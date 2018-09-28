@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CustomHeaderDelegate {
     
     private let cellId = "cellId"
 
@@ -28,7 +28,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     Picture(imageUrl: "", description: "test - 4"),
     Picture(imageUrl: "", description: "test - 5"),
     Picture(imageUrl: "", description: "test - 6"),
-    Picture(imageUrl: "", description: "test - 7")
+    Picture(imageUrl: "", description: "test - 7"),
+        Picture(imageUrl: "", description: "test - 8"),
+        Picture(imageUrl: "", description: "test - 9"),
+        Picture(imageUrl: "", description: "test - 10"),
+        Picture(imageUrl: "", description: "test - 11"),
+        Picture(imageUrl: "", description: "test - 12"),
+        Picture(imageUrl: "", description: "test - 13"),
+        Picture(imageUrl: "", description: "test - 14"),
+        Picture(imageUrl: "", description: "test - 15"),
+        Picture(imageUrl: "", description: "test - 16"),
+        Picture(imageUrl: "", description: "test - 17")
+
+
     ]
     
     override func viewDidLoad() {
@@ -43,6 +55,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if pictures.count > 0 {
             collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
         }
+        
+        let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        layout?.sectionHeadersPinToVisibleBounds = true
         
         //register cell
         let cellNib = UINib(nibName: "PictureGridCell", bundle: nil)
@@ -87,7 +102,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CustomHeader
             
             self.headerView = header
-            
+            self.headerView?.delegate = self
+
             return header
             
         } else {
@@ -137,5 +153,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         cell.picture = pictures[indexPath.item]
         
         return cell
+    }
+    
+    //MARK: CustomHeaderDelegate methods
+    
+    func didSelectGridLayout() {
+    }
+    
+    func didSelectListLayout() {
+    }
+    
+    func didSelectMasonryLayout() {
     }
 }

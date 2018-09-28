@@ -8,20 +8,71 @@
 
 import UIKit
 
+protocol CustomHeaderDelegate {
+    func didSelectGridLayout()
+    func didSelectListLayout()
+    func didSelectMasonryLayout()
+}
+
 class CustomHeader: UICollectionViewCell {
 
-    @IBOutlet weak var gridButton: UIButton!
+    var delegate: CustomHeaderDelegate?
     
-    @IBOutlet weak var listButton: UIButton!
+    @IBOutlet weak var gridButton: UIButton! {
+        didSet {
+            gridButton.addTarget(self, action: #selector(handleGridLayoutSelect), for: .touchUpInside)
+        }
+    }
     
-    @IBOutlet weak var masonryButton: UIButton!
+    @IBOutlet weak var listButton: UIButton! {
+        didSet {
+            listButton.addTarget(self, action: #selector(handleListLayoutSelect), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var masonryButton: UIButton! {
+        didSet {
+            masonryButton.addTarget(self, action: #selector(handleMasonryLayoutSelect), for: .touchUpInside)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        gridButton.tintColor = .red
+        addBlurrBackground()
+
+        updateColorOnSelection(for: gridButton)
+    }
+    
+    @objc private func handleGridLayoutSelect() {
+        updateColorOnSelection(for: gridButton)
+        delegate?.didSelectGridLayout()
+    }
+    
+    @objc private func handleListLayoutSelect() {
+        updateColorOnSelection(for: listButton)
+        delegate?.didSelectListLayout()
+    }
+
+    @objc private func handleMasonryLayoutSelect() {
+        updateColorOnSelection(for: masonryButton)
+        delegate?.didSelectMasonryLayout()
+    }
+
+    private func addBlurrBackground() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        insertSubview(blurEffectView, at: 0)
+    }
+    
+    private func updateColorOnSelection(for button: UIButton) {
+        gridButton.tintColor = .lightGray
         listButton.tintColor = .lightGray
         masonryButton.tintColor = .lightGray
+        
+        button.tintColor = UIColor.appThemeColor
     }
 
 }

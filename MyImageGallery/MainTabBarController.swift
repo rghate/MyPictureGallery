@@ -16,7 +16,7 @@ class MainTabBarController: UITabBarController {
         UINavigationBar.appearance().prefersLargeTitles = true
         
         view.backgroundColor = .white
-        tabBar.tintColor = .darkGray
+        tabBar.tintColor = UIColor.black
         
         setupViewConrollers()
     }

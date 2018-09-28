@@ -26,6 +26,6 @@ class PictureGridCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
     }
 }
