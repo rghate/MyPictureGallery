@@ -19,9 +19,12 @@
 		C231DD1F215E095F00F9D329 /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C231DD1D215E095F00F9D329 /* CustomHeader.xib */; };
 		C231DD21215E4B9A00F9D329 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD20215E4B9A00F9D329 /* Picture.swift */; };
 		C231DD24215E4FF200F9D329 /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD22215E4FF200F9D329 /* CustomFooter.swift */; };
-		C231DD28215E619A00F9D329 /* PictureGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD26215E619A00F9D329 /* PictureGridCell.swift */; };
-		C231DD29215E619A00F9D329 /* PictureGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C231DD27215E619A00F9D329 /* PictureGridCell.xib */; };
+		C231DD28215E619A00F9D329 /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD26215E619A00F9D329 /* GridCell.swift */; };
+		C231DD29215E619A00F9D329 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C231DD27215E619A00F9D329 /* GridCell.xib */; };
 		C231DD2C215E62D800F9D329 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD2B215E62D800F9D329 /* UIColor.swift */; };
+		C231DD2F215EA89800F9D329 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD2D215EA89800F9D329 /* ListCell.swift */; };
+		C231DD30215EA89800F9D329 /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C231DD2E215EA89800F9D329 /* ListCell.xib */; };
+		C231DD32215F6C8200F9D329 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD31215F6C8200F9D329 /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,9 +54,12 @@
 		C231DD1D215E095F00F9D329 /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
 		C231DD20215E4B9A00F9D329 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		C231DD22215E4FF200F9D329 /* CustomFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooter.swift; sourceTree = "<group>"; };
-		C231DD26215E619A00F9D329 /* PictureGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGridCell.swift; sourceTree = "<group>"; };
-		C231DD27215E619A00F9D329 /* PictureGridCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureGridCell.xib; sourceTree = "<group>"; };
+		C231DD26215E619A00F9D329 /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
+		C231DD27215E619A00F9D329 /* GridCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridCell.xib; sourceTree = "<group>"; };
 		C231DD2B215E62D800F9D329 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		C231DD2D215EA89800F9D329 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		C231DD2E215EA89800F9D329 /* ListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
+		C231DD31215F6C8200F9D329 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +110,10 @@
 				C231DD0A215DECD200F9D329 /* MainTabBarController.swift */,
 				C231DD0B215DECD200F9D329 /* TabBarController.xib */,
 				C231DD16215E005F00F9D329 /* HomeController.swift */,
-				C231DD26215E619A00F9D329 /* PictureGridCell.swift */,
-				C231DD27215E619A00F9D329 /* PictureGridCell.xib */,
+				C231DD26215E619A00F9D329 /* GridCell.swift */,
+				C231DD27215E619A00F9D329 /* GridCell.xib */,
+				C231DD2D215EA89800F9D329 /* ListCell.swift */,
+				C231DD2E215EA89800F9D329 /* ListCell.xib */,
 				C231DD1C215E095F00F9D329 /* CustomHeader.swift */,
 				C231DD1D215E095F00F9D329 /* CustomHeader.xib */,
 				C231DD22215E4FF200F9D329 /* CustomFooter.swift */,
@@ -127,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				C231DD2B215E62D800F9D329 /* UIColor.swift */,
+				C231DD31215F6C8200F9D329 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -214,10 +223,11 @@
 			files = (
 				C231DCEF215D10A000F9D329 /* LaunchScreen.storyboard in Resources */,
 				C231DD0D215DECD200F9D329 /* TabBarController.xib in Resources */,
-				C231DD29215E619A00F9D329 /* PictureGridCell.xib in Resources */,
+				C231DD29215E619A00F9D329 /* GridCell.xib in Resources */,
 				C231DCEC215D10A000F9D329 /* Assets.xcassets in Resources */,
 				C231DCEA215D109E00F9D329 /* Main.storyboard in Resources */,
 				C231DD1F215E095F00F9D329 /* CustomHeader.xib in Resources */,
+				C231DD30215EA89800F9D329 /* ListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,12 +245,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C231DD32215F6C8200F9D329 /* UIView.swift in Sources */,
 				C231DD0C215DECD200F9D329 /* MainTabBarController.swift in Sources */,
 				C231DD24215E4FF200F9D329 /* CustomFooter.swift in Sources */,
 				C231DD21215E4B9A00F9D329 /* Picture.swift in Sources */,
 				C231DCE5215D109E00F9D329 /* AppDelegate.swift in Sources */,
-				C231DD28215E619A00F9D329 /* PictureGridCell.swift in Sources */,
+				C231DD28215E619A00F9D329 /* GridCell.swift in Sources */,
 				C231DD2C215E62D800F9D329 /* UIColor.swift in Sources */,
+				C231DD2F215EA89800F9D329 /* ListCell.swift in Sources */,
 				C231DD17215E005F00F9D329 /* HomeController.swift in Sources */,
 				C231DD1E215E095F00F9D329 /* CustomHeader.swift in Sources */,
 			);
