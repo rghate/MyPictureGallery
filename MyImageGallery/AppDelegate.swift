@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import ImgurSession
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, IMGSessionDelegate {
 
     var window: UIWindow?
 
@@ -20,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         window?.rootViewController = MainTabBarController()
+
+        //configure Imgur session as anonymous
+        IMGSession.anonymousSession(withClientID: Constants.clientID, with: self)
 
         return true
     }
