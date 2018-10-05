@@ -1,0 +1,63 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Alamofire (4.7.3)
+  - CHTCollectionViewWaterfallLayout/Swift (0.9.7)
+  - ImgurSession (1.3):
+    - AFNetworking (= 2.6.3)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - CHTCollectionViewWaterfallLayout/Swift (from `https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git`, branch `master`)
+  - ImgurSession
+  - SDWebImage
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - Alamofire
+    - ImgurSession
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  CHTCollectionViewWaterfallLayout:
+    :branch: master
+    :git: https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git
+
+CHECKOUT OPTIONS:
+  CHTCollectionViewWaterfallLayout:
+    :commit: 95b703fc9ade826b5d00984053be156eccd5109b
+    :git: https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  CHTCollectionViewWaterfallLayout: 659d109000db86356afcc69cdb1870f54334ae43
+  ImgurSession: 76e5ef98cb0224866f571acd39f6170bdcc66c2b
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+
+PODFILE CHECKSUM: 94e32ec53054edfe8848bf853f3eb96306df02e0
+
+COCOAPODS: 1.5.0
