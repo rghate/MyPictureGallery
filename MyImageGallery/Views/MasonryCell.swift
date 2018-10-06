@@ -11,7 +11,6 @@ import SDWebImage
 
 class MasonryCell: UICollectionViewCell {
     
-  //  @IBOutlet fileprivate weak var containerView: UIView!
     @IBOutlet fileprivate weak var pictureView: UIImageView! {
         didSet {
             pictureView.layer.cornerRadius = 8
@@ -22,34 +21,30 @@ class MasonryCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //    containerView.layer.cornerRadius = 8
-        //    containerView.layer.masksToBounds = true
     }
-    
-    //  var photo: Photo? {
-    //    didSet {
-    //      if let photo = photo {
-    //        imageView.image = photo.image
-    //        commentLabel.text = photo.comment
-    //      }
-    //    }
-    //  }
-    
+
     var picture: Picture? {
         didSet {
-            if let picture = picture, let imageView = pictureView {
-                descriptionLabel.text = picture.description
-                
-                let url = URL(string: picture.link)
-                
-                imageView.sd_setImage(with: url) { (img, err, _, url) in
-                    if err == nil { return }
-                    
-                    if let url = url {
-                        print("Failed for \(img) of type :: \(picture.type)")
-                        print("Failed to display url: \(url)")
+            descriptionLabel.text = picture?.description
+            
+            guard let link = picture?.link else { return }
+            
+            //download medium sized image thumbnail instead of full sized image
+            //url for .gif are alredy modified to get thumbnail.. so skipping that.
+            if let type = picture?.type, type.contains("/gif") {
+
+                guard let url = URL(string: link) else { return }
+
+                self.pictureView.sd_setImage(with: url) { [weak self] (_, err, _, _) in
+                    if err != nil {
+                        print("Failed for: ", url)
+                    }
+                    else {
+                        self?.pictureView.backgroundColor = .clear
                     }
                 }
+            } else {
+                pictureView.setMediumImage(withUrlString: link)
             }
         }
     }}

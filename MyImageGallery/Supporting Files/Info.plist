@@ -8,7 +8,7 @@
 		<false/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>i.imgur.com</key>
+			<key>imgur.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>

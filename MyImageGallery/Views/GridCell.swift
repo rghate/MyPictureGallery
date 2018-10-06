@@ -9,33 +9,43 @@
 import UIKit
 
 class GridCell: UICollectionViewCell {
-
+    
     var picture: Picture? {
         didSet {
-            if let picture = picture {
+            if let description = picture?.description {
+                descriptionBackgroundView.isHidden = false
 
-                print(picture.description)
-//                if picture.description.count == 0 {
-//                    descriptionBackgroundView.isHidden = true
-//                } else {
-                    descriptionLabel.text = picture.description
-//                }
+                if description.count > 0 {
+                    descriptionLabel.text = picture?.description
+                } else {
+                    //hide description container if description text is empty
+                    descriptionBackgroundView.isHidden = true
+                }
+//                print("Description: \(descriptionLabel.text ?? "Nil") ** Count: \(description.count) *** \(descriptionBackgroundView.isHidden)")
+            }
+//            print("Original",  picture?.link ?? "")
+            
+            guard let link = picture?.link else { return }
 
-            let url = URL(string: picture.link)
-
-                pictureView?.sd_setImage(with: url) { (img, err, _, url) in
-                    if err == nil {
-                        return
-                    }
-                    
-                    if let url = url {
-                        print("Failed for type :: \(picture.type ??  "" )")
-                        print("Failed to display url: \(url)")
+            //download medium sized image thumbnail instead of full sized image
+            //url for .gif are alredy modified to get thumbnail.. so skipping that.
+            if let type = picture?.type, type.contains("/gif") {
+                
+                guard let url = URL(string: link) else { return }
+                
+                self.pictureView.sd_setImage(with: url) { [weak self](_, err, _, _) in
+                    if err != nil {
+                        print("Failed for: ", url)
+                    } else {
+                        self?.pictureView.backgroundColor = .clear
                     }
                 }
+            } else {
+                pictureView.setMediumImage(withUrlString: link)
             }
         }
     }
+
     @IBOutlet weak var descriptionBackgroundView: UIVisualEffectView!
     
     @IBOutlet weak var pictureView: UIImageView! {
@@ -45,7 +55,6 @@ class GridCell: UICollectionViewCell {
             pictureView.clipsToBounds = true
         }
     }
-    
     @IBOutlet weak var descriptionLabel: UILabel! {
         didSet {
             descriptionLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)

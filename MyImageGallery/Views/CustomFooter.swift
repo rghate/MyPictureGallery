@@ -10,11 +10,6 @@ import UIKit
 
 class CustomFooter: UICollectionViewCell {
 
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//
-//    }
-    
     private let waitIndicator: UIActivityIndicatorView = {
        let indicatorView = UIActivityIndicatorView()
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +23,7 @@ class CustomFooter: UICollectionViewCell {
     private let messageLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "test message"
+        label.text = ""
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0

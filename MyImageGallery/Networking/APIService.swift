@@ -65,5 +65,5 @@ class APIService {
             completion((nil, pictures: pictures))
         }
     }
-    
+
 }

@@ -101,15 +101,7 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         
         collectionView?.contentInset = contentInsets
         
-        
-        
-        //        layout?.sectionInset = sectionInsets
-        
-        //        layout?.headerReferenceSize = CGSize(width: view.frame.width, height: 60)
-        
-        //        layout?.sectionHeadersPinToVisibleBounds = true
-        
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor.rgb(red: 245, green: 245, blue: 245)
         
         if pictures.count > 0 {
             collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
@@ -271,60 +263,11 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     private func getItemWidth() -> CGFloat {
         switch UIDevice().model.lowercased() {
         case "ipad":
-            return 200
+            return 250
         default:
-            return 100
+            return 170
         }
     }
-    
-    /*    private func calculateCellWidth() -> CGFloat {
-     //        let columnWidth  = getColumnWidth()
-     let contentWidth = collectionView.contentSize.width - (contentInsets.left + contentInsets.right)
-     
-     let numberOfColumns =  CGFloat(Int(contentWidth) / itemWidth)
-     
-     let cellWidth = (contentWidth - ((numberOfColumns) * interItemSpacing)) / numberOfColumns
-     
-     return cellWidth
-     }
-     */
-    /*
-     //MARK: CHTCollectionViewDelegateWaterfallLayout method
-     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-     
-     let contentWidth = collectionView.contentSize.width - (contentInsets.left + contentInsets.right)
-     
-     //        let cellWidth = calculateCellWidth()
-     
-     if currentLayoutType ==  LayoutType.gridView {
-     let descriptionTextHeight: CGFloat = 60
-     let cellHeight = cellWidth + descriptionTextHeight // 60 is description label height and 8 + 8 are top and bottom padding od description label
-     return CGSize(width: cellWidth, height: cellHeight)
-     } else if currentLayoutType ==  LayoutType.listView {
-     let imgHeightWithPadding: CGFloat = 8 + 300
-     let labelHeightWithPAdding: CGFloat = 88 + 12
-     
-     let cellHeight = imgHeightWithPadding + labelHeightWithPAdding  + 8
-     
-     return CGSize(width: contentWidth, height: cellHeight)
-     }
-     
-     let descriptionTextHeight: CGFloat?
-     
-     let picture = pictures[indexPath.item]
-     
-     if currentLayoutType == LayoutType.masonryView {
-     descriptionTextHeight = UILabel.height(for: picture.description, width: cellWidth, font: UIFont.systemFont(ofSize:
-     12))
-     } else {
-     descriptionTextHeight = 40
-     }
-     
-     //        let cellHeight = cellH + 8 + (descriptionTextHeight ?? 0) + 8
-     
-     return CGSize(width: 0, height: 0)
-     }
-     */
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -350,7 +293,6 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
 }
 
 extension HomeController: PinterestLayoutDelegate {
-    
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return lineSpacing
@@ -378,25 +320,31 @@ extension HomeController: PinterestLayoutDelegate {
         let cellWidth = getItemWidth()
         
         if currentLayoutType ==  LayoutType.grid {
-            let descriptionTextHeight: CGFloat = 60
-            let cellHeight = cellWidth + descriptionTextHeight // 60 is description label height and 8 + 8 are top and bottom padding od description label
+//            let textContentHeight: CGFloat = 100
+            let cellHeight = cellWidth /*+ textContentHeight */
             return cellHeight
         } else if currentLayoutType ==  LayoutType.list {
             let imgHeightWithPadding: CGFloat = 8 + 300
-            let labelHeightWithPAdding: CGFloat = 88 + 12
+            let textContentHeight: CGFloat = 88
+            let descriptionTextHeightWithPadding: CGFloat = textContentHeight + 12
             
-            let cellHeight = imgHeightWithPadding + labelHeightWithPAdding  + 8
+            let cellHeight = imgHeightWithPadding + descriptionTextHeightWithPadding + 8
             
             return cellHeight
         } else {
-            
             let itemWidth = getItemWidth()
             
             let scale: CGFloat = itemWidth / CGFloat(imageWidth)
             let scaledImgHeight: CGFloat = CGFloat(imageHeight) * scale
-            let descriptionHeight = UILabel.height(for: photo.description, width: itemWidth, font: UIFont.systemFont(ofSize: 12))
-            let cellHeight = scaledImgHeight + 10 + descriptionHeight + 10
+//            let descriptionTextHeight: CGFloat = (photo.description.count > 0) ? 100 : 0
             
+            var textContentHeightWithPadding: CGFloat = 0
+            if photo.description.count > 0 {
+                let textContentHeight = UILabel.height(for: photo.description, width: itemWidth, font: UIFont.systemFont(ofSize: 12))
+                textContentHeightWithPadding = 10 + textContentHeight + 10
+            }
+            let cellHeight = scaledImgHeight + textContentHeightWithPadding
+
             return cellHeight
         }
     }
