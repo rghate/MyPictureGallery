@@ -111,6 +111,74 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C20D8AAA2168892E005FE2D5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C20D8A582165FAF6005FE2D5 /* Constants.swift */,
+				C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */,
+				C231DCF0215D10A000F9D329 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C20D8AAB2168895F005FE2D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C231DD20215E4B9A00F9D329 /* Picture.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C20D8AAC21688978005FE2D5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C231DD26215E619A00F9D329 /* GridCell.swift */,
+				C231DD2D215EA89800F9D329 /* ListCell.swift */,
+				C231DD1C215E095F00F9D329 /* CustomHeader.swift */,
+				C231DD22215E4FF200F9D329 /* CustomFooter.swift */,
+				C20D8A5E2165FFB1005FE2D5 /* MasonryCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C20D8AAD216889A2005FE2D5 /* Storyboards & Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				C231DCE8215D109E00F9D329 /* Main.storyboard */,
+				C231DCED215D10A000F9D329 /* LaunchScreen.storyboard */,
+				C231DD0B215DECD200F9D329 /* TabBarController.xib */,
+				C231DD27215E619A00F9D329 /* GridCell.xib */,
+				C231DD2E215EA89800F9D329 /* ListCell.xib */,
+				C231DD1D215E095F00F9D329 /* CustomHeader.xib */,
+			);
+			path = "Storyboards & Xibs";
+			sourceTree = "<group>";
+		};
+		C20D8AAE216889C5005FE2D5 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C231DD0A215DECD200F9D329 /* MainTabBarController.swift */,
+				C231DD16215E005F00F9D329 /* HomeController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C20D8AAF21688A18005FE2D5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C20D8A5A2165FC89005FE2D5 /* APIService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C20D8AB021688A39005FE2D5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C231DCEB215D10A000F9D329 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		C231DCD8215D109E00F9D329 = {
 			isa = PBXGroup;
 			children = (
@@ -134,27 +202,15 @@
 		C231DCE3215D109E00F9D329 /* MyImageGallery */ = {
 			isa = PBXGroup;
 			children = (
+				C20D8AB021688A39005FE2D5 /* Assets */,
+				C20D8AAF21688A18005FE2D5 /* Networking */,
+				C20D8AAE216889C5005FE2D5 /* View Controllers */,
+				C20D8AAD216889A2005FE2D5 /* Storyboards & Xibs */,
+				C20D8AAC21688978005FE2D5 /* Views */,
+				C20D8AAB2168895F005FE2D5 /* Models */,
+				C20D8AAA2168892E005FE2D5 /* Supporting Files */,
 				C231DD2A215E62C000F9D329 /* Extensions */,
 				C231DCE4215D109E00F9D329 /* AppDelegate.swift */,
-				C231DCE8215D109E00F9D329 /* Main.storyboard */,
-				C231DCEB215D10A000F9D329 /* Assets.xcassets */,
-				C231DCED215D10A000F9D329 /* LaunchScreen.storyboard */,
-				C231DCF0215D10A000F9D329 /* Info.plist */,
-				C231DD0A215DECD200F9D329 /* MainTabBarController.swift */,
-				C231DD0B215DECD200F9D329 /* TabBarController.xib */,
-				C231DD16215E005F00F9D329 /* HomeController.swift */,
-				C231DD26215E619A00F9D329 /* GridCell.swift */,
-				C231DD27215E619A00F9D329 /* GridCell.xib */,
-				C231DD2D215EA89800F9D329 /* ListCell.swift */,
-				C231DD2E215EA89800F9D329 /* ListCell.xib */,
-				C231DD1C215E095F00F9D329 /* CustomHeader.swift */,
-				C231DD1D215E095F00F9D329 /* CustomHeader.xib */,
-				C231DD22215E4FF200F9D329 /* CustomFooter.swift */,
-				C231DD20215E4B9A00F9D329 /* Picture.swift */,
-				C20D8A582165FAF6005FE2D5 /* Constants.swift */,
-				C20D8A5A2165FC89005FE2D5 /* APIService.swift */,
-				C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */,
-				C20D8A5E2165FFB1005FE2D5 /* MasonryCell.swift */,
 			);
 			path = MyImageGallery;
 			sourceTree = "<group>";
@@ -539,7 +595,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54Z55RGA5W;
-				INFOPLIST_FILE = MyImageGallery/Info.plist;
+				INFOPLIST_FILE = "MyImageGallery/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -559,7 +615,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54Z55RGA5W;
-				INFOPLIST_FILE = MyImageGallery/Info.plist;
+				INFOPLIST_FILE = "MyImageGallery/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
