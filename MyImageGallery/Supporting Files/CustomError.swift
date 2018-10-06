@@ -9,5 +9,9 @@
 import Foundation
 
 struct CustomError: LocalizedError {
-    var localizedDescription: String
+    let localizedDescription: String
+    
+    init(description: String) {
+        localizedDescription = description
+    }
 }

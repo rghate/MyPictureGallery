@@ -39,10 +39,20 @@ class CustomFooter: UICollectionViewCell {
     }
     
     //MARK: Public method(s)
-    func setMessage(with text: String, waitIndicationToBeShown: Bool) {
+    func setMessage(withText text: String, visibleWaitIndicator: Bool) {
         messageLabel.text = text
         
-        if waitIndicationToBeShown == true {
+        if visibleWaitIndicator {
+            waitIndicator.startAnimating()
+        } else {
+            waitIndicator.stopAnimating()
+        }
+    }
+
+    func resetMessage(visibleWaitIndicator: Bool) {
+        messageLabel.text = ""
+        
+        if visibleWaitIndicator {
             waitIndicator.startAnimating()
         } else {
             waitIndicator.stopAnimating()

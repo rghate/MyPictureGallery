@@ -123,16 +123,21 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     
     private func fetchAndLoadPictures() {
         APIService.shared.fetch { [weak self] (err, pictures) in
-            self?.collectionView.refreshControl?.endRefreshing()
+            guard let self = self else { return }
+            
+            self.pictures.removeAll()
+            
+            self.collectionView.refreshControl?.endRefreshing()
             if let err = err {
-                //TODO: display error
-                //                print(err.localizedDescription)
+                self.collectionView.reloadData()
+                CustomAlert().showAlert(withTitle: "Error", message: err.localizedDescription, viewController: self)
+                self.footerView?.setMessage(withText: "Something is wrong 😢.\n\n Drag down to try again.", visibleWaitIndicator:  false)
                 return
             }
-            self?.pictures.removeAll()
-            self?.pictures = pictures
+//            self.pictures.removeAll()
+            self.pictures = pictures
 
-            self?.handleLayoutChange(to: (self?.currentLayoutType)!)
+            self.handleLayoutChange(to: self.currentLayoutType)
         }
     }
     
@@ -143,6 +148,7 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     }
     
     @objc private func handleRefresh() {
+        self.footerView?.resetMessage(visibleWaitIndicator: false)
         fetchAndLoadPictures()
     }
     

@@ -25,7 +25,7 @@ class APIService {
     
     //MARK:- Public methods
     
-    func fetch(completion: @escaping ((error: Error?, pictures: [Picture]))->Void) {
+    func fetch(completion: @escaping ((error: CustomError?, pictures: [Picture]))->Void) {
         
         let parameters: Parameters = ["showViral": "true"]
         
@@ -35,27 +35,28 @@ class APIService {
         
         var pictures = [Picture]()
         var responseError: CustomError?
-
+        
+        
         guard let url = URL(string: baseUrlString) else {
-            responseError = CustomError(localizedDescription: "Invalid url")
+            responseError = CustomError(description: "Invalid url")
             return completion((error: responseError, pictures: pictures))
         }
-
+    
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { /*[weak self]*/ (responseData) in
             
             if let err = responseData.error {
-                responseError = CustomError(localizedDescription: err.localizedDescription)
-                return completion((error: responseError, pictures: pictures))
+                responseError = CustomError(description: err.localizedDescription)
+                return completion((responseError, pictures: pictures))
             }
-            
+
             guard let json = responseData.result.value as? [String: Any], let dataDictArr = json["data"] as? [[String: Any]] else {
-                let error = CustomError(localizedDescription: "Invalid response data")
+                let error = CustomError(description: "Invalid response data")
                 return completion((error, pictures: pictures))
             }
             
             for item in dataDictArr {
                 guard let images = item["images"] as? [[String: Any]] else { continue }
-                
+
                 for image in images {
                     if let picture = Picture(dict: image) {
                         pictures.append(picture)
@@ -65,5 +66,5 @@ class APIService {
             completion((nil, pictures: pictures))
         }
     }
-
+    
 }
