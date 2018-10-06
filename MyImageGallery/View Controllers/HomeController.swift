@@ -11,17 +11,7 @@ import UIKit
 
 class HomeController: UICollectionViewController, CustomHeaderDelegate {
     
-    private enum LayoutType: String {
-        case grid
-        case list
-        case masonry
-        
-        func type() -> String {
-            return self.rawValue
-        }
-    }
-    
-    private var currentLayoutType: LayoutType = LayoutType.grid
+    private var currentLayoutType: Constants.LayoutType = .grid
     
     private let gridCellId = "gridCellId"
     
@@ -63,6 +53,8 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         setupCollectionView()
         
         fetchAndLoadPictures()
+        
+        setupRefreshControl()
     }
     
     private func setupNavigationBar() {
@@ -90,8 +82,7 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     @objc private func handleLayoutChangeToMasonry() {
         handleLayoutChange(to: .masonry)
     }
-    
-    
+
     private func setupCollectionView() {
         collectionView.backgroundColor = .white
         
@@ -131,16 +122,28 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     }
     
     private func fetchAndLoadPictures() {
-        
         APIService.shared.fetch { [weak self] (err, pictures) in
+            self?.collectionView.refreshControl?.endRefreshing()
             if let err = err {
                 //TODO: display error
                 //                print(err.localizedDescription)
                 return
             }
+            self?.pictures.removeAll()
             self?.pictures = pictures
+
             self?.handleLayoutChange(to: (self?.currentLayoutType)!)
         }
+    }
+    
+    private func setupRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView?.refreshControl = refreshControl
+    }
+    
+    @objc private func handleRefresh() {
+        fetchAndLoadPictures()
     }
     
     //MARK: collectionview header and footer view methods
@@ -157,7 +160,6 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
                 navigationItem.rightBarButtonItems?.removeAll()
             }
         }
-        
     }
     
     //MARK: Device rotation callback
@@ -188,7 +190,7 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         }
     }
     
-    private func handleLayoutChange(to layoutType: LayoutType) {
+    private func handleLayoutChange(to layoutType: Constants.LayoutType) {
         currentBarButtonItem?.tintColor = .lightGray
         
         let barButtonItem: UIBarButtonItem?
@@ -203,11 +205,14 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
             barButtonItem = masonryBarButtonItem
             break
         }
-        self.currentBarButtonItem = barButtonItem
-        self.currentBarButtonItem?.tintColor = UIColor.appThemeColor
-        
-        self.currentLayoutType = layoutType
-        
+        currentBarButtonItem = barButtonItem
+        currentBarButtonItem?.tintColor = UIColor.appThemeColor
+
+        currentLayoutType = layoutType
+
+        //update image color of collectionView header
+        headerView?.layoutChanged(to: layoutType)
+
         reloadCollectionView()
     }
 }
@@ -238,7 +243,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
         
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CustomHeader
-            
+
             self.headerView = header
             self.headerView?.delegate = self
             
@@ -271,13 +276,17 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if currentLayoutType ==  LayoutType.grid {
+        if pictures.count == 0 {
+            return UICollectionViewCell()
+        }
+        
+        if currentLayoutType ==  .grid {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gridCellId, for: indexPath) as! GridCell
             cell.picture = pictures[indexPath.item]
             
             return cell
         }
-        else if currentLayoutType ==  LayoutType.list {
+        else if currentLayoutType ==  .list {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: listCellId, for: indexPath) as! ListCell
             cell.picture = pictures[indexPath.item]
             
@@ -303,7 +312,7 @@ extension HomeController: PinterestLayoutDelegate {
     }
     
     func collectionView(widthForItemIn collectionView: UICollectionView) -> CGFloat {
-        if currentLayoutType == LayoutType.list {
+        if currentLayoutType == .list {
             return collectionView.contentSize.width
         } else {
             return getItemWidth()
@@ -319,11 +328,11 @@ extension HomeController: PinterestLayoutDelegate {
         
         let cellWidth = getItemWidth()
         
-        if currentLayoutType ==  LayoutType.grid {
+        if currentLayoutType ==  .grid {
 //            let textContentHeight: CGFloat = 100
             let cellHeight = cellWidth /*+ textContentHeight */
             return cellHeight
-        } else if currentLayoutType ==  LayoutType.list {
+        } else if currentLayoutType ==  .list {
             let imgHeightWithPadding: CGFloat = 8 + 300
             let textContentHeight: CGFloat = 88
             let descriptionTextHeightWithPadding: CGFloat = textContentHeight + 12

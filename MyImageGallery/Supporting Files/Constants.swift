@@ -9,5 +9,15 @@
 import Foundation
 
 class Constants {
+    enum LayoutType: String {
+        case grid
+        case list
+        case masonry
+        
+        func type() -> String {
+            return self.rawValue
+        }
+    }
+    
     static let clientID = "be6fa0182c58fec"
 }

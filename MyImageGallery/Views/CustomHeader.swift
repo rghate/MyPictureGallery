@@ -35,13 +35,24 @@ class CustomHeader: UICollectionViewCell {
             masonryButton.addTarget(self, action: #selector(handleMasonryLayoutSelect), for: .touchUpInside)
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
         addBlurrBackground()
 
         updateColorOnSelection(for: gridButton)
+    }
+    
+    func layoutChanged(to type: Constants.LayoutType) {
+        switch type {
+        case .grid:
+            handleGridLayoutSelect()
+        case .list:
+            handleListLayoutSelect()
+        case .masonry:
+            handleMasonryLayoutSelect()
+        }
     }
     
     @objc private func handleGridLayoutSelect() {
