@@ -12,19 +12,18 @@ class GridCell: UICollectionViewCell {
 
     var picture: Picture? {
         didSet {
-            if let picture = picture, let imageView = pictureView {
-                
-                if picture.description.count == 0 {
-                    descriptionBackgroundView.isHidden = true
-                } else {
-                    descriptionLabel.text = picture.description
-                }
-                
-                print(picture.description)
-                
-                let url = URL(string: picture.link)
+            if let picture = picture {
 
-                imageView.sd_setImage(with: url) { (img, err, _, url) in
+                print(picture.description)
+//                if picture.description.count == 0 {
+//                    descriptionBackgroundView.isHidden = true
+//                } else {
+                    descriptionLabel.text = picture.description
+//                }
+
+            let url = URL(string: picture.link)
+
+                pictureView?.sd_setImage(with: url) { (img, err, _, url) in
                     if err == nil {
                         return
                     }
@@ -51,7 +50,7 @@ class GridCell: UICollectionViewCell {
         didSet {
             descriptionLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
             descriptionLabel.textAlignment = .left
-            descriptionLabel.textColor = .darkGray
+            //descriptionLabel.textColor = .darkGray
         }
     }
     

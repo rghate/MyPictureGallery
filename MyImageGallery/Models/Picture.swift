@@ -24,7 +24,7 @@ struct Picture: Decodable {
         self.width = width
         self.height = height
     }
-    
+
     init?(dict: [String: Any]) {
         guard let link = dict["link"] as? String else { return nil }
         

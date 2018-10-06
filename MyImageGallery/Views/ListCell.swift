@@ -19,7 +19,7 @@ class ListCell: UICollectionViewCell {
                     descriptionLabel.text = picture.description
                 }
                 
-                print(picture.description)
+//                print(picture.description)
                 
                 let url = URL(string: picture.link)
                 

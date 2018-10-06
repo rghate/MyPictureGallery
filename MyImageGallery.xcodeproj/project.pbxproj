@@ -14,6 +14,10 @@
 		C20D8A5D2165FCAE005FE2D5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */; };
 		C20D8A5F2165FFB1005FE2D5 /* MasonryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5E2165FFB1005FE2D5 /* MasonryCell.swift */; };
 		C20D8AA921675B9F005FE2D5 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8AA821675B9F005FE2D5 /* UILabel.swift */; };
+		C20D8AB221688F66005FE2D5 /* MasonryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D8AB121688F66005FE2D5 /* MasonryCell.xib */; };
+		C20D8AB721689767005FE2D5 /* MasonryLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8AB421689767005FE2D5 /* MasonryLayoutDelegate.swift */; };
+		C20D8AB821689767005FE2D5 /* MasonryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8AB521689767005FE2D5 /* MasonryLayout.swift */; };
+		C20D8AB921689767005FE2D5 /* MasonryLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8AB621689767005FE2D5 /* MasonryLayoutAttributes.swift */; };
 		C231DCE5215D109E00F9D329 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DCE4215D109E00F9D329 /* AppDelegate.swift */; };
 		C231DCEA215D109E00F9D329 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C231DCE8215D109E00F9D329 /* Main.storyboard */; };
 		C231DCEC215D10A000F9D329 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C231DCEB215D10A000F9D329 /* Assets.xcassets */; };
@@ -54,6 +58,10 @@
 		C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		C20D8A5E2165FFB1005FE2D5 /* MasonryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasonryCell.swift; sourceTree = "<group>"; };
 		C20D8AA821675B9F005FE2D5 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		C20D8AB121688F66005FE2D5 /* MasonryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MasonryCell.xib; sourceTree = "<group>"; };
+		C20D8AB421689767005FE2D5 /* MasonryLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasonryLayoutDelegate.swift; sourceTree = "<group>"; };
+		C20D8AB521689767005FE2D5 /* MasonryLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasonryLayout.swift; sourceTree = "<group>"; };
+		C20D8AB621689767005FE2D5 /* MasonryLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasonryLayoutAttributes.swift; sourceTree = "<group>"; };
 		C231DCE1215D109E00F9D329 /* MyImageGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyImageGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C231DCE4215D109E00F9D329 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C231DCE9215D109E00F9D329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -132,6 +140,7 @@
 		C20D8AAC21688978005FE2D5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C20D8AB321689751005FE2D5 /* MasonryLayouts */,
 				C231DD26215E619A00F9D329 /* GridCell.swift */,
 				C231DD2D215EA89800F9D329 /* ListCell.swift */,
 				C231DD1C215E095F00F9D329 /* CustomHeader.swift */,
@@ -147,6 +156,7 @@
 				C231DCE8215D109E00F9D329 /* Main.storyboard */,
 				C231DCED215D10A000F9D329 /* LaunchScreen.storyboard */,
 				C231DD0B215DECD200F9D329 /* TabBarController.xib */,
+				C20D8AB121688F66005FE2D5 /* MasonryCell.xib */,
 				C231DD27215E619A00F9D329 /* GridCell.xib */,
 				C231DD2E215EA89800F9D329 /* ListCell.xib */,
 				C231DD1D215E095F00F9D329 /* CustomHeader.xib */,
@@ -177,6 +187,16 @@
 				C231DCEB215D10A000F9D329 /* Assets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		C20D8AB321689751005FE2D5 /* MasonryLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				C20D8AB521689767005FE2D5 /* MasonryLayout.swift */,
+				C20D8AB621689767005FE2D5 /* MasonryLayoutAttributes.swift */,
+				C20D8AB421689767005FE2D5 /* MasonryLayoutDelegate.swift */,
+			);
+			path = MasonryLayouts;
 			sourceTree = "<group>";
 		};
 		C231DCD8215D109E00F9D329 = {
@@ -328,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C231DCEF215D10A000F9D329 /* LaunchScreen.storyboard in Resources */,
+				C20D8AB221688F66005FE2D5 /* MasonryCell.xib in Resources */,
 				C231DD0D215DECD200F9D329 /* TabBarController.xib in Resources */,
 				C231DD29215E619A00F9D329 /* GridCell.xib in Resources */,
 				C231DCEC215D10A000F9D329 /* Assets.xcassets in Resources */,
@@ -429,8 +450,11 @@
 				C20D8AA921675B9F005FE2D5 /* UILabel.swift in Sources */,
 				C20D8A5B2165FC89005FE2D5 /* APIService.swift in Sources */,
 				C231DD17215E005F00F9D329 /* HomeController.swift in Sources */,
+				C20D8AB921689767005FE2D5 /* MasonryLayoutAttributes.swift in Sources */,
 				C231DD1E215E095F00F9D329 /* CustomHeader.swift in Sources */,
+				C20D8AB821689767005FE2D5 /* MasonryLayout.swift in Sources */,
 				C20D8A592165FAF6005FE2D5 /* Constants.swift in Sources */,
+				C20D8AB721689767005FE2D5 /* MasonryLayoutDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

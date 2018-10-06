@@ -24,7 +24,7 @@ class MainTabBarController: UITabBarController {
     //MARK:- Setup functions
     
     private func setupViewConrollers() {
-        let layout = UICollectionViewFlowLayout()
+        let layout = PinterestLayout()
         
         let homeNavController = generateNavigationController(with: HomeController(collectionViewLayout: layout), title: "Home", image: #imageLiteral(resourceName: "home"))
         
