@@ -35,11 +35,18 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     
     fileprivate let lineSpacing: CGFloat = 6
     
-    private var currentBarButtonItem: UIBarButtonItem?
+    //right bar button item
+    private var infoBarButtonItem = UIBarButtonItem()
+    private var rightBarButtonItems = [UIBarButtonItem]()
+    
+    //left bar button items
     private var gridBarButtonItem = UIBarButtonItem()
     private var listBarButtonItem = UIBarButtonItem()
     private var masonryBarButtonItem = UIBarButtonItem()
-    private var barButtonItems = [UIBarButtonItem]()
+    
+    private var leftBarButtonItems = [UIBarButtonItem]()
+
+    private var selectedBarButtonItem: UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,13 +69,26 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         
         navigationController?.navigationBar.tintColor = .lightGray
         
+        infoBarButtonItem = UIBarButtonItem(image: UIImage(named: "info"), style: .plain, target: self, action: #selector(handleInfo))
+        infoBarButtonItem.tintColor = .black
+        
         gridBarButtonItem = UIBarButtonItem(image: UIImage(named: "grid_nav_item"), style: .plain, target: self, action: #selector(handleLayoutChangeToGrid))
         listBarButtonItem = UIBarButtonItem(image: UIImage(named: "list_nav_item"), style: .plain, target: self, action: #selector(handleLayoutChangeToList))
         masonryBarButtonItem = UIBarButtonItem(image: UIImage(named: "masonry_nav_item"), style: .plain, target: self, action: #selector(handleLayoutChangeToMasonry))
         
-        barButtonItems = [masonryBarButtonItem, listBarButtonItem, gridBarButtonItem]
+        leftBarButtonItems = [gridBarButtonItem, listBarButtonItem, masonryBarButtonItem]
         
-        currentBarButtonItem = gridBarButtonItem
+//        rightBarButtonItems = [infoBarButtonItem]
+        
+        selectedBarButtonItem = gridBarButtonItem
+    }
+    
+    @objc private func handleFilter() {
+        didSelectFilter()
+    }
+    
+    @objc private func handleInfo() {
+        print("show information")
     }
     
     @objc private func handleLayoutChangeToGrid() {
@@ -158,12 +178,14 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         let scrollPos = scrollView.contentOffset.y
         
         if scrollPos > -40.0 {
-            if navigationItem.rightBarButtonItems?.count == 0 || navigationItem.rightBarButtonItems?.count == nil {
-                navigationItem.rightBarButtonItems = barButtonItems
+            if navigationItem.leftBarButtonItems?.count == 0 || navigationItem.leftBarButtonItems?.count == nil {
+                navigationItem.leftBarButtonItems = leftBarButtonItems
+                navigationItem.rightBarButtonItem = infoBarButtonItem
             }
         } else {
-            if navigationItem.rightBarButtonItems?.count ?? 0 > 0 {
-                navigationItem.rightBarButtonItems?.removeAll()
+            if navigationItem.leftBarButtonItems?.count ?? 0 > 0 {
+                navigationItem.leftBarButtonItems?.removeAll()
+                navigationItem.rightBarButtonItem = nil
             }
         }
     }
@@ -177,6 +199,10 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     
     
     //MARK: CustomHeaderDelegate methods
+    
+    func didSelectFilter() {
+        print("didSelectFilter")
+    }
     
     func didSelectGridLayout() {
         if currentLayoutType != .grid {
@@ -197,7 +223,7 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     }
     
     private func handleLayoutChange(to layoutType: Constants.LayoutType) {
-        currentBarButtonItem?.tintColor = .lightGray
+        selectedBarButtonItem?.tintColor = .lightGray
         
         let barButtonItem: UIBarButtonItem?
         switch layoutType {
@@ -211,8 +237,8 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
             barButtonItem = masonryBarButtonItem
             break
         }
-        currentBarButtonItem = barButtonItem
-        currentBarButtonItem?.tintColor = UIColor.appThemeColor
+        selectedBarButtonItem = barButtonItem
+        selectedBarButtonItem?.tintColor = UIColor.appThemeColor
 
         currentLayoutType = layoutType
 

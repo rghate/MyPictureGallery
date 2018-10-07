@@ -9,6 +9,7 @@
 import UIKit
 
 protocol CustomHeaderDelegate {
+    func didSelectFilter()
     func didSelectGridLayout()
     func didSelectListLayout()
     func didSelectMasonryLayout()
@@ -17,6 +18,13 @@ protocol CustomHeaderDelegate {
 class CustomHeader: UICollectionViewCell {
 
     var delegate: CustomHeaderDelegate?
+    
+    @IBOutlet weak var filterButton: UIButton! {
+        didSet {
+            filterButton.addTarget(self, action: #selector(handleFilterSelect), for: .touchUpInside)
+        }
+    }
+
     
     @IBOutlet weak var gridButton: UIButton! {
         didSet {
@@ -55,6 +63,10 @@ class CustomHeader: UICollectionViewCell {
         }
     }
     
+    @objc private func handleFilterSelect() {
+        delegate?.didSelectFilter()
+    }
+
     @objc private func handleGridLayoutSelect() {
         updateColorOnSelection(for: gridButton)
         delegate?.didSelectGridLayout()
