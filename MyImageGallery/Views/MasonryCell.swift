@@ -18,10 +18,6 @@ class MasonryCell: UICollectionViewCell {
         }
     }
     @IBOutlet fileprivate weak var descriptionLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 
     var picture: Picture? {
         didSet {
@@ -29,22 +25,21 @@ class MasonryCell: UICollectionViewCell {
             
             guard let link = picture?.link else { return }
             
-            //download medium sized image thumbnail instead of full sized image
-            //url for .gif are alredy modified to get thumbnail.. so skipping that.
-//            if let type = picture?.type, type.contains("/gif") {
-
-                guard let url = URL(string: link) else { return }
-
-                self.pictureView.sd_setImage(with: url) { [weak self] (_, err, _, _) in
-                    if err != nil {
-                        print("Failed for: ", url)
-                    }
-                    else {
-                        self?.pictureView.backgroundColor = .clear
-                    }
+            guard let url = URL(string: link) else { return }
+            
+            self.pictureView.sd_setImage(with: url) { [weak self] (_, err, _, _) in
+                if err != nil {
+                    print("Failed for: ", url)
                 }
-//            } else {
-//                pictureView.setMediumImage(withUrlString: link)
-//            }
+                else {
+                    self?.pictureView.backgroundColor = .clear
+                }
+            }
         }
-    }}
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+}

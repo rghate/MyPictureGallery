@@ -14,6 +14,7 @@
 		C206EEE8216937E6006DED90 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEE7216937E6006DED90 /* CustomAlert.swift */; };
 		C206EEEE216A7014006DED90 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEED216A7014006DED90 /* FloatingButton.swift */; };
 		C206EEF0216A78D8006DED90 /* FloatingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEEF216A78D8006DED90 /* FloatingMenu.swift */; };
+		C206EEF4216B386B006DED90 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEF3216B386B006DED90 /* APIServiceManager.swift */; };
 		C20D8A592165FAF6005FE2D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A582165FAF6005FE2D5 /* Constants.swift */; };
 		C20D8A5B2165FC89005FE2D5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5A2165FC89005FE2D5 /* APIService.swift */; };
 		C20D8A5D2165FCAE005FE2D5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */; };
@@ -61,6 +62,7 @@
 		C206EEE7216937E6006DED90 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		C206EEED216A7014006DED90 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		C206EEEF216A78D8006DED90 /* FloatingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMenu.swift; sourceTree = "<group>"; };
+		C206EEF3216B386B006DED90 /* APIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManager.swift; sourceTree = "<group>"; };
 		C20D8A582165FAF6005FE2D5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C20D8A5A2165FC89005FE2D5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				C20D8A5A2165FC89005FE2D5 /* APIService.swift */,
+				C206EEF3216B386B006DED90 /* APIServiceManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				C231DD21215E4B9A00F9D329 /* Picture.swift in Sources */,
 				C231DCE5215D109E00F9D329 /* AppDelegate.swift in Sources */,
 				C206EEE8216937E6006DED90 /* CustomAlert.swift in Sources */,
+				C206EEF4216B386B006DED90 /* APIServiceManager.swift in Sources */,
 				C231DD28215E619A00F9D329 /* GridCell.swift in Sources */,
 				C20D8A5D2165FCAE005FE2D5 /* CustomError.swift in Sources */,
 				C20D8A5F2165FFB1005FE2D5 /* MasonryCell.swift in Sources */,

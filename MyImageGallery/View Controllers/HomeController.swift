@@ -185,7 +185,9 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     }
     
     private func fetchAndLoadPictures() {
-        APIService.shared.fetch { [weak self] (err, pictures) in
+        prepareBeforeDataDownload()
+
+        APIServiceManager.shared.getPictures(forCategory: currentImageCategory, showViralImages: isViral) { [weak self] (err, pictures) in
             guard let self = self else { return }
             
             self.pictures.removeAll()
@@ -198,8 +200,8 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
                 return
             }
             self.pictures = pictures
-
-            self.handleLayoutChange(to: self.currentLayoutType)
+            
+            self.prepareAfterDataDownload()
         }
     }
     
@@ -210,8 +212,8 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     }
     
     @objc private func handleRefresh() {
-        self.footerView?.resetMessage(visibleWaitIndicator: false)
         fetchAndLoadPictures()
+        self.footerView?.setMessage(withText: "Please wait", visibleWaitIndicator: false)
     }
     
     //MARK: collectionview header and footer view methods
@@ -287,6 +289,26 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
 
         reloadCollectionView()
     }
+    
+    private func prepareBeforeDataDownload() {
+        menuFloatingButton.isHidden = true
+        
+        pictures.removeAll()
+        reloadCollectionView()
+        
+        //show wait indicator
+        footerView?.setMessage(withText: "Please wait", visibleWaitIndicator: true)
+    }
+    
+    private func prepareAfterDataDownload() {
+        menuFloatingButton.isHidden = false
+
+        //show wait indicator
+        footerView?.resetMessage(visibleWaitIndicator: false)
+        
+        reloadCollectionView()
+    }
+
 }
 
 extension HomeController: UICollectionViewDelegateFlowLayout {
@@ -389,7 +411,6 @@ extension HomeController: PinterestLayoutDelegate {
     }
     
     func collectionView(collectionView: UICollectionView, heightForItemAt indexPath: IndexPath) -> CGFloat {
-        
         let photo = pictures[indexPath.item]
         
         guard let imageWidth = photo.width else { return 0 }
@@ -398,8 +419,8 @@ extension HomeController: PinterestLayoutDelegate {
         let cellWidth = getItemWidth()
         
         if currentLayoutType ==  .grid {
-//            let textContentHeight: CGFloat = 100
-            let cellHeight = cellWidth /*+ textContentHeight */
+            //height and width of cell are same for grid view layout
+            let cellHeight = cellWidth
             return cellHeight
         } else if currentLayoutType ==  .list {
             let imgHeightWithPadding: CGFloat = 8 + 300
@@ -428,6 +449,7 @@ extension HomeController: PinterestLayoutDelegate {
 }
 
 extension HomeController: SelectionControlDelegate {
+    
     func getPictures(with category: Constants.ImageCategory) {
         if category == .hot {
             print("Get hot pictures")
@@ -436,19 +458,18 @@ extension HomeController: SelectionControlDelegate {
             print("Get top pictures")
             currentImageCategory = .top
         }
+        fetchAndLoadPictures()
     }
     
     func showViralPictures() {
         print("show viral pictures")
         isViral = true
+        fetchAndLoadPictures()
     }
     
     func hideViralPictures() {
         print("hide viral pictures")
         isViral = false
+        fetchAndLoadPictures()
     }
-    
-//    func closeView() {
-//        selectionControlView.removeFromSuperview()
-//    }
 }

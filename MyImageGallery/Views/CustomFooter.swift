@@ -13,10 +13,9 @@ class CustomFooter: UICollectionViewCell {
     private let waitIndicator: UIActivityIndicatorView = {
        let indicatorView = UIActivityIndicatorView()
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
-        indicatorView.hidesWhenStopped = true
+        indicatorView.hidesWhenStopped = false
         indicatorView.style = .whiteLarge
         indicatorView.color = .gray
-        indicatorView.startAnimating()
         return indicatorView
     }()
     
@@ -47,6 +46,7 @@ class CustomFooter: UICollectionViewCell {
         } else {
             waitIndicator.stopAnimating()
         }
+        waitIndicator.isHidden = !visibleWaitIndicator
     }
 
     func resetMessage(visibleWaitIndicator: Bool) {
@@ -57,6 +57,7 @@ class CustomFooter: UICollectionViewCell {
         } else {
             waitIndicator.stopAnimating()
         }
+        waitIndicator.isHidden = !visibleWaitIndicator
     }
 
 

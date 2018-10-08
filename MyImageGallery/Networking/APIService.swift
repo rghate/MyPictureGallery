@@ -14,33 +14,18 @@ class APIService {
     
     //singleton
     static let shared = APIService()
-    
-    //MARK:- private variables
-    
-    private let baseUrlString = "https://api.imgur.com/3/gallery/top"
-    
-    private init() {
-        
-    }
+
+    private init() { }
     
     //MARK:- Public methods
     
-    func fetch(completion: @escaping ((error: CustomError?, pictures: [Picture]))->Void) {
-        
-        let parameters: Parameters = ["showViral": "true"]
-        
+    func fetch(url: URL, parameters: [String: Any], completion: @escaping ((error: CustomError?, pictures: [Picture]))->Void) {
         let headers: HTTPHeaders = [
             "Authorization": "Client-ID \(Constants.clientID)"
         ]
-        
+
         var pictures = [Picture]()
         var responseError: CustomError?
-        
-        
-        guard let url = URL(string: baseUrlString) else {
-            responseError = CustomError(description: "Invalid url")
-            return completion((error: responseError, pictures: pictures))
-        }
     
         Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { /*[weak self]*/ (responseData) in
             

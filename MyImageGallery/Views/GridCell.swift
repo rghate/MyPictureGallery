@@ -14,38 +14,28 @@ class GridCell: UICollectionViewCell {
         didSet {
             if let description = picture?.description {
                 descriptionBackgroundView.isHidden = false
-
+                
                 if description.count > 0 {
                     descriptionLabel.text = picture?.description
                 } else {
-                    //hide description container if description text is empty
+                    //hide description container view if description text is empty
                     descriptionBackgroundView.isHidden = true
                 }
-//                print("Description: \(descriptionLabel.text ?? "Nil") ** Count: \(description.count) *** \(descriptionBackgroundView.isHidden)")
             }
-//            print("Original",  picture?.link ?? "")
-            
             guard let link = picture?.link else { return }
-
-            //download medium sized image thumbnail instead of full sized image
-            //url for .gif are alredy modified to get thumbnail.. so skipping that.
-//            if let type = picture?.type, type.contains("/gif") {
             
-                guard let url = URL(string: link) else { return }
-                
-                self.pictureView.sd_setImage(with: url) { [weak self](_, err, _, _) in
-                    if err != nil {
-                        print("Failed for: ", url)
-                    } else {
-                        self?.pictureView.backgroundColor = .clear
-                    }
+            guard let url = URL(string: link) else { return }
+            
+            self.pictureView.sd_setImage(with: url) { [weak self](_, err, _, _) in
+                if err != nil {
+                    print("Failed for: ", url)
+                } else {
+                    self?.pictureView.backgroundColor = .clear
                 }
-//            } else {
-//                pictureView.setMediumImage(withUrlString: link)
-//            }
+            }
         }
     }
-
+    
     @IBOutlet weak var descriptionBackgroundView: UIVisualEffectView!
     
     @IBOutlet weak var pictureView: UIImageView! {
@@ -57,12 +47,13 @@ class GridCell: UICollectionViewCell {
     }
     @IBOutlet weak var descriptionLabel: UILabel! {
         didSet {
+            descriptionLabel.numberOfLines = 2
             descriptionLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
             descriptionLabel.textAlignment = .left
-            //descriptionLabel.textColor = .darkGray
+            descriptionLabel.textColor = .black
+            descriptionLabel.text = ""
         }
     }
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()

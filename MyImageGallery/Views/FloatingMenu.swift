@@ -12,7 +12,6 @@ protocol SelectionControlDelegate {
     func getPictures(with Category: Constants.ImageCategory)
     func showViralPictures()
     func hideViralPictures()
-//    func closeView()
 }
 
 class FloatingMenu: UIView {
