@@ -31,7 +31,7 @@ class MasonryCell: UICollectionViewCell {
             
             //download medium sized image thumbnail instead of full sized image
             //url for .gif are alredy modified to get thumbnail.. so skipping that.
-            if let type = picture?.type, type.contains("/gif") {
+//            if let type = picture?.type, type.contains("/gif") {
 
                 guard let url = URL(string: link) else { return }
 
@@ -43,8 +43,8 @@ class MasonryCell: UICollectionViewCell {
                         self?.pictureView.backgroundColor = .clear
                     }
                 }
-            } else {
-                pictureView.setMediumImage(withUrlString: link)
-            }
+//            } else {
+//                pictureView.setMediumImage(withUrlString: link)
+//            }
         }
     }}

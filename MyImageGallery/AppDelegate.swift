@@ -20,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IMGSessionDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         
-        window?.rootViewController = MainTabBarController()
+        let layout = PinterestLayout()
+        let homeController = HomeController(collectionViewLayout: layout)
+        let navController = UINavigationController(rootViewController: homeController)
+        window?.rootViewController = navController
 
         //configure Imgur session as anonymous
         IMGSession.anonymousSession(withClientID: Constants.clientID, with: self)

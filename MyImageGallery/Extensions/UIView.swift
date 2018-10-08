@@ -9,6 +9,9 @@
 import UIKit
 
 extension UIView {
+    
+    //helper method for setting anchor constraints of the view
+    
     func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
         
         self.translatesAutoresizingMaskIntoConstraints = false

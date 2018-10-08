@@ -7,11 +7,14 @@
 //
 
 import UIKit
-//import CHTCollectionViewWaterfallLayout
 
 class HomeController: UICollectionViewController, CustomHeaderDelegate {
     
     private var currentLayoutType: Constants.LayoutType = .grid
+    
+    private var currentImageCategory: Constants.ImageCategory = .top
+    
+    private var isViral: Bool = true
     
     private let gridCellId = "gridCellId"
     
@@ -48,6 +51,20 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
 
     private var selectedBarButtonItem: UIBarButtonItem?
     
+    let menuFloatingButton: FloatingButton = {
+       let button = FloatingButton()
+        button.setImage(UIImage(named: "menu")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.layer.cornerRadius = 35
+
+        button.addTarget(self, action: #selector(handleMenuSelection), for: .touchUpInside)
+        
+        return button
+    }()
+
+    @objc private func handleMenuSelection() {
+        openMenu()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,15 +72,43 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         
         print (UIDevice().localizedModel)
         
-        setupNavigationBar()
-        
-        setupCollectionView()
+        setupViews()
         
         fetchAndLoadPictures()
         
         setupRefreshControl()
+        
+    }
+
+    private func setupViews() {
+        setupNavigationBar()
+        
+        setupCollectionView()
+        
+        setupMenuButtons()
     }
     
+    private func setupMenuButtons() {
+        //add (toggle) selectionButton for selecting 'hot' and 'top' images
+        self.view.addSubview(menuFloatingButton)
+        menuFloatingButton.anchor(top: nil, left: self.view.safeAreaLayoutGuide.leftAnchor, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: 70, height: 70)
+    }
+    
+    private func openMenu() {
+        let floatingMenu = FloatingMenu()
+        floatingMenu.imageCategory = currentImageCategory
+        floatingMenu.isViral = isViral
+
+        let mainWindow = UIApplication.shared.keyWindow!
+        //add floatingMenu in application's main window instead of own view to display it in full screen(including status and navigation bar!).
+        mainWindow.addSubview(floatingMenu)
+
+        //setup annchor constraints of floating menu w.r.t. app's main window anchor constraints
+        floatingMenu.anchor(top: mainWindow.topAnchor, left: mainWindow.leftAnchor, bottom: mainWindow.bottomAnchor, right: mainWindow.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+
+        floatingMenu.delegate = self
+    }
+
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -77,8 +122,6 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         masonryBarButtonItem = UIBarButtonItem(image: UIImage(named: "masonry_nav_item"), style: .plain, target: self, action: #selector(handleLayoutChangeToMasonry))
         
         leftBarButtonItems = [gridBarButtonItem, listBarButtonItem, masonryBarButtonItem]
-        
-//        rightBarButtonItems = [infoBarButtonItem]
         
         selectedBarButtonItem = gridBarButtonItem
     }
@@ -94,7 +137,7 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     @objc private func handleLayoutChangeToGrid() {
         handleLayoutChange(to: .grid)
     }
-    
+
     @objc private func handleLayoutChangeToList() {
         handleLayoutChange(to: .list)
     }
@@ -154,7 +197,6 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
                 self.footerView?.setMessage(withText: "Something is wrong 😢.\n\n Drag down to try again.", visibleWaitIndicator:  false)
                 return
             }
-//            self.pictures.removeAll()
             self.pictures = pictures
 
             self.handleLayoutChange(to: self.currentLayoutType)
@@ -193,10 +235,8 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     //MARK: Device rotation callback
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
         reloadCollectionView()
     }
-    
     
     //MARK: CustomHeaderDelegate methods
     
@@ -260,7 +300,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: view.frame.width, height: 0)
         }
     }
-    
+
     func collectionView(collectionView: UICollectionView, sizeForSectionFooterViewForSection section: Int) -> CGSize {
         if pictures.count > 0 {
             //if pictures available, reduce footer height to zero to hide it
@@ -289,9 +329,6 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
             return footer
         }
     }
-    
-    
-    //MARK: collectionview body methods
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pictures.count
@@ -377,7 +414,6 @@ extension HomeController: PinterestLayoutDelegate {
             
             let scale: CGFloat = itemWidth / CGFloat(imageWidth)
             let scaledImgHeight: CGFloat = CGFloat(imageHeight) * scale
-//            let descriptionTextHeight: CGFloat = (photo.description.count > 0) ? 100 : 0
             
             var textContentHeightWithPadding: CGFloat = 0
             if photo.description.count > 0 {
@@ -391,3 +427,28 @@ extension HomeController: PinterestLayoutDelegate {
     }
 }
 
+extension HomeController: SelectionControlDelegate {
+    func getPictures(with category: Constants.ImageCategory) {
+        if category == .hot {
+            print("Get hot pictures")
+            currentImageCategory = .hot
+        } else {
+            print("Get top pictures")
+            currentImageCategory = .top
+        }
+    }
+    
+    func showViralPictures() {
+        print("show viral pictures")
+        isViral = true
+    }
+    
+    func hideViralPictures() {
+        print("hide viral pictures")
+        isViral = false
+    }
+    
+//    func closeView() {
+//        selectionControlView.removeFromSuperview()
+//    }
+}
