@@ -69,9 +69,7 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         super.viewDidLoad()
         
         title = "Home"
-        
-        print (UIDevice().localizedModel)
-        
+
         setupViews()
         setupRefreshControl()
 

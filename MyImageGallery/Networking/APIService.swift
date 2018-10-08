@@ -48,7 +48,6 @@ class APIService {
                     }
                 }
             }
-            print("********************** ", pictures.count)
             completion((nil, pictures: pictures))
         }
     }

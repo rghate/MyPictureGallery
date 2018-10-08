@@ -13,11 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="MyImageGallery" customModuleProvider="target">
             <connections>
                 <outlet property="appTitleLabel" destination="70o-Cb-bGg" id="9nt-dW-ZX9"/>
+                <outlet property="authorLabel" destination="fOY-1U-uKB" id="V3P-LL-pEc"/>
+                <outlet property="authorValueLabel" destination="wn0-TA-cEc" id="moU-Fl-6tF"/>
                 <outlet property="buildTimeLabel" destination="NgD-4g-eFR" id="pTG-hi-wui"/>
                 <outlet property="buildTimeValueLabel" destination="DiE-TV-EA5" id="kMa-FJ-mUb"/>
                 <outlet property="dividerLineView" destination="q5S-74-HLA" id="KoJ-bZ-qu8"/>
-                <outlet property="emailLabel" destination="fOY-1U-uKB" id="BQU-EN-o1t"/>
-                <outlet property="emailValueLabel" destination="wn0-TA-cEc" id="Eqh-U9-Iwk"/>
                 <outlet property="logoImageView" destination="HlS-TS-fRW" id="Jk7-HG-DqO"/>
                 <outlet property="versionValueLabel" destination="uXg-8u-h0W" id="33e-yx-Ddc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -81,7 +81,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CIo-9z-zTI">
                             <rect key="frame" x="0.0" y="76.5" width="280" height="48.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOY-1U-uKB">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOY-1U-uKB">
                                     <rect key="frame" x="0.0" y="0.0" width="280" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

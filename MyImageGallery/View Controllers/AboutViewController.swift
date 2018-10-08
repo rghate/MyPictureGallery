@@ -33,7 +33,7 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var buildTimeLabel: UILabel! {
         didSet {
             buildTimeLabel.text = "Build Time".uppercased()
-            buildTimeLabel.textColor = .lightGray
+            buildTimeLabel.textColor = .gray
             buildTimeLabel.font = UIFont.systemFont(ofSize: 12)
             buildTimeLabel.textAlignment = .center
         }
@@ -48,21 +48,21 @@ class AboutViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var emailLabel: UILabel! {
+    @IBOutlet weak var authorLabel: UILabel! {
         didSet {
-            emailLabel.text = "Author Email".uppercased()
-            emailLabel.textColor = .lightGray
-            emailLabel.font = UIFont.systemFont(ofSize: 12)
-            emailLabel.textAlignment = .center
+            authorLabel.text = "Author".uppercased()
+            authorLabel.textColor = .gray
+            authorLabel.font = UIFont.systemFont(ofSize: 12)
+            authorLabel.textAlignment = .center
         }
     }
     
-    @IBOutlet weak var emailValueLabel: UILabel! {
+    @IBOutlet weak var authorValueLabel: UILabel! {
         didSet {
-            emailValueLabel.text = "-"
-            emailValueLabel.textColor = .darkText
-            emailValueLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-            emailValueLabel.textAlignment = .center
+            authorValueLabel.text = "-"
+            authorValueLabel.textColor = .darkText
+            authorValueLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+            authorValueLabel.textAlignment = .center
         }
     }
     
@@ -87,8 +87,9 @@ class AboutViewController: UIViewController {
         //App display name
         appTitleLabel.text = getApplicationDisplayName()
         
-        //App version number
-        emailValueLabel.text = "test.email@testmail.com"
+        //App author name
+        let userName = NSFullUserName()
+        authorValueLabel.text = userName.isEmpty ? "-" : userName
         
         //App build date and time
         let buildTime = getBuildTime()

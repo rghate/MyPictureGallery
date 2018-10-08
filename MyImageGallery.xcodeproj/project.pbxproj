@@ -145,8 +145,8 @@
 				C20A496B216BB09700B0F5FC /* MyImageGallery-Bridging-Header.h */,
 				C20D8A582165FAF6005FE2D5 /* Constants.swift */,
 				C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */,
-				C231DCF0215D10A000F9D329 /* Info.plist */,
 				C206EEE7216937E6006DED90 /* CustomAlert.swift */,
+				C231DCF0215D10A000F9D329 /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
