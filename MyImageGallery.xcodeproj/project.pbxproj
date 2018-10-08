@@ -10,11 +10,12 @@
 		7F702B45DC3A71E4788C1D9B /* Pods_MyImageGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3DD8F2C6EA7FA1961A5F928 /* Pods_MyImageGallery.framework */; };
 		8BC415A4DB027165D0BB0C0C /* Pods_MyImageGalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A037EE8C7B9CF34298245B /* Pods_MyImageGalleryTests.framework */; };
 		C206EEE22168DEED006DED90 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEE12168DEED006DED90 /* String.swift */; };
-		C206EEE62168F94E006DED90 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEE52168F94E006DED90 /* UIImageView.swift */; };
 		C206EEE8216937E6006DED90 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEE7216937E6006DED90 /* CustomAlert.swift */; };
 		C206EEEE216A7014006DED90 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEED216A7014006DED90 /* FloatingButton.swift */; };
 		C206EEF0216A78D8006DED90 /* FloatingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEEF216A78D8006DED90 /* FloatingMenu.swift */; };
 		C206EEF4216B386B006DED90 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEF3216B386B006DED90 /* APIServiceManager.swift */; };
+		C20A4962216B5D6800B0F5FC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4961216B5D6800B0F5FC /* Date.swift */; };
+		C20A4964216B68D200B0F5FC /* UInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4963216B68D100B0F5FC /* UInt.swift */; };
 		C20D8A592165FAF6005FE2D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A582165FAF6005FE2D5 /* Constants.swift */; };
 		C20D8A5B2165FC89005FE2D5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5A2165FC89005FE2D5 /* APIService.swift */; };
 		C20D8A5D2165FCAE005FE2D5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */; };
@@ -58,11 +59,12 @@
 		58A037EE8C7B9CF34298245B /* Pods_MyImageGalleryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyImageGalleryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DD8F2C6EA7FA1961A5F928 /* Pods_MyImageGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyImageGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C206EEE12168DEED006DED90 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		C206EEE52168F94E006DED90 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C206EEE7216937E6006DED90 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		C206EEED216A7014006DED90 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		C206EEEF216A78D8006DED90 /* FloatingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMenu.swift; sourceTree = "<group>"; };
 		C206EEF3216B386B006DED90 /* APIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManager.swift; sourceTree = "<group>"; };
+		C20A4961216B5D6800B0F5FC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		C20A4963216B68D100B0F5FC /* UInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt.swift; sourceTree = "<group>"; };
 		C20D8A582165FAF6005FE2D5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C20D8A5A2165FC89005FE2D5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
@@ -261,7 +263,8 @@
 				C20D8AA821675B9F005FE2D5 /* UILabel.swift */,
 				C231DD31215F6C8200F9D329 /* UIView.swift */,
 				C206EEE12168DEED006DED90 /* String.swift */,
-				C206EEE52168F94E006DED90 /* UIImageView.swift */,
+				C20A4961216B5D6800B0F5FC /* Date.swift */,
+				C20A4963216B68D100B0F5FC /* UInt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20A4962216B5D6800B0F5FC /* Date.swift in Sources */,
 				C206EEE22168DEED006DED90 /* String.swift in Sources */,
 				C231DD32215F6C8200F9D329 /* UIView.swift in Sources */,
 				C206EEEE216A7014006DED90 /* FloatingButton.swift in Sources */,
@@ -455,6 +459,7 @@
 				C231DD21215E4B9A00F9D329 /* Picture.swift in Sources */,
 				C231DCE5215D109E00F9D329 /* AppDelegate.swift in Sources */,
 				C206EEE8216937E6006DED90 /* CustomAlert.swift in Sources */,
+				C20A4964216B68D200B0F5FC /* UInt.swift in Sources */,
 				C206EEF4216B386B006DED90 /* APIServiceManager.swift in Sources */,
 				C231DD28215E619A00F9D329 /* GridCell.swift in Sources */,
 				C20D8A5D2165FCAE005FE2D5 /* CustomError.swift in Sources */,
@@ -467,7 +472,6 @@
 				C231DD17215E005F00F9D329 /* HomeController.swift in Sources */,
 				C20D8AB921689767005FE2D5 /* MasonryLayoutAttributes.swift in Sources */,
 				C231DD1E215E095F00F9D329 /* CustomHeader.swift in Sources */,
-				C206EEE62168F94E006DED90 /* UIImageView.swift in Sources */,
 				C20D8AB821689767005FE2D5 /* MasonryLayout.swift in Sources */,
 				C20D8A592165FAF6005FE2D5 /* Constants.swift in Sources */,
 				C20D8AB721689767005FE2D5 /* MasonryLayoutDelegate.swift in Sources */,

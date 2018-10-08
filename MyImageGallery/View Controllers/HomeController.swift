@@ -73,11 +73,9 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         print (UIDevice().localizedModel)
         
         setupViews()
-        
-        fetchAndLoadPictures()
-        
         setupRefreshControl()
-        
+
+        fetchAndLoadPictures()
     }
 
     private func setupViews() {
@@ -86,6 +84,8 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         setupCollectionView()
         
         setupMenuButtons()
+        
+        
     }
     
     private func setupMenuButtons() {
@@ -124,6 +124,8 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         leftBarButtonItems = [gridBarButtonItem, listBarButtonItem, masonryBarButtonItem]
         
         selectedBarButtonItem = gridBarButtonItem
+        
+        selectedBarButtonItem?.tintColor = .appThemeColor
     }
     
     @objc private func handleFilter() {
@@ -184,13 +186,21 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         }
     }
     
+    var currentPageNumber = -1
+    var isFinishedPaging: Bool = false
+    
     private func fetchAndLoadPictures() {
-        prepareBeforeDataDownload()
-
-        APIServiceManager.shared.getPictures(forCategory: currentImageCategory, showViralImages: isViral) { [weak self] (err, pictures) in
+        if currentPageNumber == -1 {
+            prepareBeforeDataDownload()
+        } else {
+            //show wait indicator
+            footerView?.setMessage(withText: "Please wait", visibleWaitIndicator: true)
+        }
+        currentPageNumber += 1
+        APIServiceManager.shared.getPictures(forCategory: currentImageCategory, showViralImages: isViral,pageNumber: currentPageNumber) { [weak self] (err, pictures) in
             guard let self = self else { return }
             
-            self.pictures.removeAll()
+            //self.pictures.removeAll()
             
             self.collectionView.refreshControl?.endRefreshing()
             if let err = err {
@@ -199,8 +209,13 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
                 self.footerView?.setMessage(withText: "Something is wrong 😢.\n\n Drag down to try again.", visibleWaitIndicator:  false)
                 return
             }
-            self.pictures = pictures
-            
+            if pictures.count > 0 {
+                pictures.forEach({ (picture) in
+                    self.pictures.append(picture)
+                })
+            } else {
+                self.isFinishedPaging = true
+            }
             self.prepareAfterDataDownload()
         }
     }
@@ -292,21 +307,24 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     
     private func prepareBeforeDataDownload() {
         menuFloatingButton.isHidden = true
+        //show wait indicator
+        footerView?.setMessage(withText: "Please wait", visibleWaitIndicator: true)
+        
+        isFinishedPaging = false
+        currentPageNumber = -1
         
         pictures.removeAll()
         reloadCollectionView()
-        
-        //show wait indicator
-        footerView?.setMessage(withText: "Please wait", visibleWaitIndicator: true)
     }
     
     private func prepareAfterDataDownload() {
         menuFloatingButton.isHidden = false
-
         //show wait indicator
         footerView?.resetMessage(visibleWaitIndicator: false)
-        
-        reloadCollectionView()
+
+        if !isFinishedPaging {
+            reloadCollectionView()
+        }
     }
 
 }
@@ -369,6 +387,10 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
         
         if pictures.count == 0 {
             return UICollectionViewCell()
+        }
+        
+        if indexPath.item == self.pictures.count - 1 && !isFinishedPaging {
+            fetchAndLoadPictures()
         }
         
         if currentLayoutType ==  .grid {
@@ -458,18 +480,21 @@ extension HomeController: SelectionControlDelegate {
             print("Get top pictures")
             currentImageCategory = .top
         }
+        currentPageNumber = -1
         fetchAndLoadPictures()
     }
     
     func showViralPictures() {
         print("show viral pictures")
         isViral = true
+        currentPageNumber = -1
         fetchAndLoadPictures()
     }
     
     func hideViralPictures() {
         print("hide viral pictures")
         isViral = false
+        currentPageNumber = -1
         fetchAndLoadPictures()
     }
 }

@@ -7,7 +7,6 @@ target 'MyImageGallery' do
 
   # Pods for MyImageGallery
 
-  pod 'CHTCollectionViewWaterfallLayout/Swift', :git => 'https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git', :branch => 'master'
   pod 'SDWebImage'
   
   pod 'ImgurSession'

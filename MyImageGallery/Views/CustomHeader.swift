@@ -51,7 +51,7 @@ class CustomHeader: UICollectionViewCell {
 
         updateColorOnSelection(for: gridButton)
     }
-    
+
     func layoutChanged(to type: Constants.LayoutType) {
         switch type {
         case .grid:
@@ -94,7 +94,7 @@ class CustomHeader: UICollectionViewCell {
         gridButton.tintColor = .lightGray
         listButton.tintColor = .lightGray
         masonryButton.tintColor = .lightGray
-        
+
         button.tintColor = UIColor.appThemeColor
     }
 

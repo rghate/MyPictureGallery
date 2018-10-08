@@ -38,16 +38,17 @@ class APIService {
                 let error = CustomError(description: "Invalid response data")
                 return completion((error, pictures: pictures))
             }
-            
+
             for item in dataDictArr {
                 guard let images = item["images"] as? [[String: Any]] else { continue }
 
                 for image in images {
-                    if let picture = Picture(dict: image) {
+                    if let picture = Picture(dictionary: image) {
                         pictures.append(picture)
                     }
                 }
             }
+            print("********************** ", pictures.count)
             completion((nil, pictures: pictures))
         }
     }

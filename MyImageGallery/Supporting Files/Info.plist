@@ -8,6 +8,13 @@
 		<false/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>api.imgur.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>imgur.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
