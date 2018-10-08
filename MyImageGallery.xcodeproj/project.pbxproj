@@ -16,6 +16,9 @@
 		C206EEF4216B386B006DED90 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEF3216B386B006DED90 /* APIServiceManager.swift */; };
 		C20A4962216B5D6800B0F5FC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4961216B5D6800B0F5FC /* Date.swift */; };
 		C20A4964216B68D200B0F5FC /* UInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4963216B68D100B0F5FC /* UInt.swift */; };
+		C20A4969216B8F5A00B0F5FC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4967216B8F5A00B0F5FC /* AboutViewController.swift */; };
+		C20A496A216B8F5A00B0F5FC /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A4968216B8F5A00B0F5FC /* AboutViewController.xib */; };
+		C20A496D216BB09700B0F5FC /* BuildTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C20A496C216BB09700B0F5FC /* BuildTime.m */; };
 		C20D8A592165FAF6005FE2D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A582165FAF6005FE2D5 /* Constants.swift */; };
 		C20D8A5B2165FC89005FE2D5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5A2165FC89005FE2D5 /* APIService.swift */; };
 		C20D8A5D2165FCAE005FE2D5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */; };
@@ -65,6 +68,11 @@
 		C206EEF3216B386B006DED90 /* APIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManager.swift; sourceTree = "<group>"; };
 		C20A4961216B5D6800B0F5FC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C20A4963216B68D100B0F5FC /* UInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt.swift; sourceTree = "<group>"; };
+		C20A4967216B8F5A00B0F5FC /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		C20A4968216B8F5A00B0F5FC /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		C20A496B216BB09700B0F5FC /* MyImageGallery-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyImageGallery-Bridging-Header.h"; sourceTree = "<group>"; };
+		C20A496C216BB09700B0F5FC /* BuildTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildTime.m; sourceTree = "<group>"; };
+		C20A496E216BB0E500B0F5FC /* BuildTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildTime.h; sourceTree = "<group>"; };
 		C20D8A582165FAF6005FE2D5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C20D8A5A2165FC89005FE2D5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
@@ -132,6 +140,9 @@
 		C20D8AAA2168892E005FE2D5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C20A496C216BB09700B0F5FC /* BuildTime.m */,
+				C20A496E216BB0E500B0F5FC /* BuildTime.h */,
+				C20A496B216BB09700B0F5FC /* MyImageGallery-Bridging-Header.h */,
 				C20D8A582165FAF6005FE2D5 /* Constants.swift */,
 				C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */,
 				C231DCF0215D10A000F9D329 /* Info.plist */,
@@ -168,6 +179,7 @@
 			children = (
 				C231DCE8215D109E00F9D329 /* Main.storyboard */,
 				C231DCED215D10A000F9D329 /* LaunchScreen.storyboard */,
+				C20A4968216B8F5A00B0F5FC /* AboutViewController.xib */,
 				C20D8AB121688F66005FE2D5 /* MasonryCell.xib */,
 				C231DD27215E619A00F9D329 /* GridCell.xib */,
 				C231DD2E215EA89800F9D329 /* ListCell.xib */,
@@ -180,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				C231DD16215E005F00F9D329 /* HomeController.swift */,
+				C20A4967216B8F5A00B0F5FC /* AboutViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -331,6 +344,7 @@
 				TargetAttributes = {
 					C231DCE0215D109E00F9D329 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					C231DCF4215D10A000F9D329 = {
 						CreatedOnToolsVersion = 10.0;
@@ -364,6 +378,7 @@
 			files = (
 				C231DCEF215D10A000F9D329 /* LaunchScreen.storyboard in Resources */,
 				C20D8AB221688F66005FE2D5 /* MasonryCell.xib in Resources */,
+				C20A496A216B8F5A00B0F5FC /* AboutViewController.xib in Resources */,
 				C231DD29215E619A00F9D329 /* GridCell.xib in Resources */,
 				C231DCEC215D10A000F9D329 /* Assets.xcassets in Resources */,
 				C231DCEA215D109E00F9D329 /* Main.storyboard in Resources */,
@@ -454,6 +469,7 @@
 				C20A4962216B5D6800B0F5FC /* Date.swift in Sources */,
 				C206EEE22168DEED006DED90 /* String.swift in Sources */,
 				C231DD32215F6C8200F9D329 /* UIView.swift in Sources */,
+				C20A496D216BB09700B0F5FC /* BuildTime.m in Sources */,
 				C206EEEE216A7014006DED90 /* FloatingButton.swift in Sources */,
 				C231DD24215E4FF200F9D329 /* CustomFooter.swift in Sources */,
 				C231DD21215E4B9A00F9D329 /* Picture.swift in Sources */,
@@ -469,6 +485,7 @@
 				C206EEF0216A78D8006DED90 /* FloatingMenu.swift in Sources */,
 				C20D8AA921675B9F005FE2D5 /* UILabel.swift in Sources */,
 				C20D8A5B2165FC89005FE2D5 /* APIService.swift in Sources */,
+				C20A4969216B8F5A00B0F5FC /* AboutViewController.swift in Sources */,
 				C231DD17215E005F00F9D329 /* HomeController.swift in Sources */,
 				C20D8AB921689767005FE2D5 /* MasonryLayoutAttributes.swift in Sources */,
 				C231DD1E215E095F00F9D329 /* CustomHeader.swift in Sources */,
@@ -637,6 +654,7 @@
 			baseConfigurationReference = 53E14AB6B0C22D4DE72A216C /* Pods-MyImageGallery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54Z55RGA5W;
 				INFOPLIST_FILE = "MyImageGallery/Supporting Files/Info.plist";
@@ -647,6 +665,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rghate.MyImageGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyImageGallery/Supporting Files/MyImageGallery-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -657,6 +677,7 @@
 			baseConfigurationReference = C5C85365A4F06823BC36F75A /* Pods-MyImageGallery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54Z55RGA5W;
 				INFOPLIST_FILE = "MyImageGallery/Supporting Files/Info.plist";
@@ -667,6 +688,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rghate.MyImageGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyImageGallery/Supporting Files/MyImageGallery-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

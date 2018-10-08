@@ -127,13 +127,11 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         
         selectedBarButtonItem?.tintColor = .appThemeColor
     }
-    
-    @objc private func handleFilter() {
-        didSelectFilter()
-    }
-    
+        
     @objc private func handleInfo() {
-        print("show information")
+        let aboutViewController = AboutViewController()
+        let navController = UINavigationController(rootViewController: aboutViewController)
+        self.present(navController, animated: true, completion: nil)
     }
     
     @objc private func handleLayoutChangeToGrid() {
@@ -185,10 +183,10 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
             self.collectionView.reloadData()
         }
     }
-    
+
     var currentPageNumber = -1
     var isFinishedPaging: Bool = false
-    
+
     private func fetchAndLoadPictures() {
         if currentPageNumber == -1 {
             prepareBeforeDataDownload()
@@ -257,8 +255,8 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
     
     //MARK: CustomHeaderDelegate methods
     
-    func didSelectFilter() {
-        print("didSelectFilter")
+    func didSelectInfo() {
+        handleInfo()
     }
     
     func didSelectGridLayout() {
@@ -326,7 +324,6 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
             reloadCollectionView()
         }
     }
-
 }
 
 extension HomeController: UICollectionViewDelegateFlowLayout {
