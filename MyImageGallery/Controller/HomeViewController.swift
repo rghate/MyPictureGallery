@@ -33,7 +33,9 @@ class HomeViewController: UICollectionViewController {
     private var masonryBarButtonItem = UIBarButtonItem()
     private var leftBarButtonItems = [UIBarButtonItem]()//references to BarButtonItems for all three layouts(grid/list/masonry)
     private var selectedLeftBarButtonItem: UIBarButtonItem? //references to BarButtonItem for the selected layout(grid/list/masonry)
-    private let contentInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)   //outer spacing of UICollectionView
+    private let portraitContentInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)   //outer spacing of UICollectionView
+    private let landscapeContentInsets = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)   //outer spacing of UICollectionView
+
     private var currentImageCategory: Constants.ImageCategory = .top  //category of the pictues(hot/top) being downloaded and displayed
     private var currentPageNumber = -1  //holds the page number (for pigination) to download the images from
     private var isViral: Bool = true
@@ -42,7 +44,7 @@ class HomeViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         title = "Home"
 
         setupViews()
@@ -138,8 +140,9 @@ class HomeViewController: UICollectionViewController {
         let layout = collectionView.collectionViewLayout as? CustomLayout
         layout?.delegate = self
         
-        collectionView?.contentInset = contentInsets
-//        collectionView.backgroundColor = UIColor.rgb(red: 245, green: 245, blue: 245)
+        // this is to consider 'safe area' in landscape mode. Since this screen uses custom layout, the
+        // 'flowLayout.sectionInsetReference = = .fromSafeArea' property of default layout is not availble
+        collectionView?.contentInset = isLandscape() ? landscapeContentInsets : portraitContentInsets
         
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         
@@ -315,7 +318,16 @@ class HomeViewController: UICollectionViewController {
     /** reload collection view on device rotation */
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+
+        // this is to consider 'safe area' in landscape mode. Since this screen uses custom layout, the
+        // 'flowLayout.sectionInsetReference = = .fromSafeArea' property of default layout is not availble
+        collectionView?.contentInset = isLandscape() ? landscapeContentInsets : portraitContentInsets
+
         reloadCollectionView()
+    }
+    
+    private func isLandscape() -> Bool {
+        return UIDevice.current.orientation.isLandscape
     }
 }
 
