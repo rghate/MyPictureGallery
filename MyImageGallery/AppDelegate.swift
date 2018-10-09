@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IMGSessionDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         
-        let layout = PinterestLayout()
+        let layout = CustomLayout()
         let homeController = HomeController(collectionViewLayout: layout)
         let navController = UINavigationController(rootViewController: homeController)
         window?.rootViewController = navController

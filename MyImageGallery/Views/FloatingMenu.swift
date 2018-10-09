@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SelectionControlDelegate {
+protocol FloatingMenuDelegate {
     func getPictures(with Category: Constants.ImageCategory)
     func showViralPictures()
     func hideViralPictures()
@@ -16,7 +16,7 @@ protocol SelectionControlDelegate {
 
 class FloatingMenu: UIView {
     
-    var delegate: SelectionControlDelegate?
+    var delegate: FloatingMenuDelegate?
     
     var isViral: Bool = true {
         didSet {

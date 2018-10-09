@@ -12,9 +12,9 @@
 
 @interface BuildTime: NSObject
 
-NSString *compileDate();
+NSString *compileDate(void);
 
-NSString *compileTime();
+NSString *compileTime(void);
 
 @end
 

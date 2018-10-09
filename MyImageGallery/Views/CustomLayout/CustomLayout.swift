@@ -1,5 +1,5 @@
 //
-//  MasonryLayout.swift
+//  CustomLayout.swift
 //  MyImageGallery
 //
 //  Created by Abhirup on 28/09/18.
@@ -10,14 +10,14 @@ import UIKit
 
 
 /**
- PinterestLayout.
+ CustomLayout
  */
-public class PinterestLayout: UICollectionViewLayout {
+public class CustomLayout: UICollectionViewLayout {
     
     /**
      Delegate.
      */
-    public var delegate: PinterestLayoutDelegate!
+    public var delegate: CustomLayoutDelegate!
     /**
      Number of columns.
      */
@@ -27,7 +27,7 @@ public class PinterestLayout: UICollectionViewLayout {
      */
     //  public var cellPadding: CGFloat = 4
     
-    private var cache = [PinterestLayoutAttributes]()
+    private var cache = [CustomLayoutAttributes]()
     private var contentHeight: CGFloat = 0
     private var contentWidth: CGFloat {
         get {
@@ -47,7 +47,7 @@ public class PinterestLayout: UICollectionViewLayout {
     }
     
     override public class var layoutAttributesClass: AnyClass {
-        return PinterestLayoutAttributes.self
+        return CustomLayoutAttributes.self
     }
     
     override public var collectionView: UICollectionView {
@@ -100,7 +100,7 @@ public class PinterestLayout: UICollectionViewLayout {
                         ),
                         size: headerSize
                     )
-                    let headerAttributes = PinterestLayoutAttributes(
+                    let headerAttributes = CustomLayoutAttributes(
                         forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                         with: IndexPath(item: 0, section: section)
                     )
@@ -144,7 +144,7 @@ public class PinterestLayout: UICollectionViewLayout {
                     )
                     
                     let insetFrame = frame.insetBy(dx: columnSpacing, dy: rowSpacing)
-                    let attributes = PinterestLayoutAttributes(
+                    let attributes = CustomLayoutAttributes(
                         forCellWith: indexPath
                     )
                     attributes.frame = insetFrame
@@ -167,7 +167,7 @@ public class PinterestLayout: UICollectionViewLayout {
                         ),
                         size: footerSize
                     )
-                    let footerAttributes = PinterestLayoutAttributes(
+                    let footerAttributes = CustomLayoutAttributes(
                         forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                         with: IndexPath(item: 0, section: section)
                     )

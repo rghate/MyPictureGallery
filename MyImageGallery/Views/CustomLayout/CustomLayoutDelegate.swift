@@ -1,5 +1,5 @@
 //
-//  MasonryLayoutDelegate.swift
+//  CustomLayoutDelegate.swift
 //  MyImageGallery
 //
 //  Created by Abhirup on 28/09/18.
@@ -10,9 +10,9 @@ import UIKit
 
 
 /**
- PinterestLayoutDelegate.
+ CustomLayoutDelegate.
  */
-@objc public protocol PinterestLayoutDelegate {
+@objc public protocol CustomLayoutDelegate {
     /**
      Size for section header. Optional.
      
