@@ -120,7 +120,7 @@ class AboutViewController: UIViewController {
     }
     
     private func getBuildTime() -> String {
-        return compileDate() + ", " + compileTime()
+        return "\(compileDate() ?? ""), \(compileTime() ?? "")"
     }
     
 }

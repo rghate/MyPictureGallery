@@ -22,8 +22,8 @@ class Constants {
     
     //enum for image category as hot-images and top-images
     enum ImageCategory: String {
-        case hot = "hot"
-        case top = "top"
+        case hot
+        case top
         
         func type() -> String {
             return self.rawValue

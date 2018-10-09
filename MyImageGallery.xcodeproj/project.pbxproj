@@ -19,8 +19,9 @@
 		C20A4969216B8F5A00B0F5FC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4967216B8F5A00B0F5FC /* AboutViewController.swift */; };
 		C20A496A216B8F5A00B0F5FC /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A4968216B8F5A00B0F5FC /* AboutViewController.xib */; };
 		C20A496D216BB09700B0F5FC /* BuildTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C20A496C216BB09700B0F5FC /* BuildTime.m */; };
+		C20A4972216C967100B0F5FC /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4971216C967100B0F5FC /* UIImageView.swift */; };
 		C20D8A592165FAF6005FE2D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A582165FAF6005FE2D5 /* Constants.swift */; };
-		C20D8A5B2165FC89005FE2D5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5A2165FC89005FE2D5 /* APIService.swift */; };
+		C20D8A5B2165FC89005FE2D5 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5A2165FC89005FE2D5 /* APIClient.swift */; };
 		C20D8A5D2165FCAE005FE2D5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */; };
 		C20D8A5F2165FFB1005FE2D5 /* MasonryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8A5E2165FFB1005FE2D5 /* MasonryCell.swift */; };
 		C20D8AA921675B9F005FE2D5 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D8AA821675B9F005FE2D5 /* UILabel.swift */; };
@@ -73,8 +74,9 @@
 		C20A496B216BB09700B0F5FC /* MyImageGallery-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyImageGallery-Bridging-Header.h"; sourceTree = "<group>"; };
 		C20A496C216BB09700B0F5FC /* BuildTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildTime.m; sourceTree = "<group>"; };
 		C20A496E216BB0E500B0F5FC /* BuildTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildTime.h; sourceTree = "<group>"; };
+		C20A4971216C967100B0F5FC /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C20D8A582165FAF6005FE2D5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		C20D8A5A2165FC89005FE2D5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		C20D8A5A2165FC89005FE2D5 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		C20D8A5C2165FCAE005FE2D5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		C20D8A5E2165FFB1005FE2D5 /* MasonryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasonryCell.swift; sourceTree = "<group>"; };
 		C20D8AA821675B9F005FE2D5 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
@@ -197,13 +199,13 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		C20D8AAF21688A18005FE2D5 /* Networking */ = {
+		C20D8AAF21688A18005FE2D5 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				C20D8A5A2165FC89005FE2D5 /* APIService.swift */,
+				C20D8A5A2165FC89005FE2D5 /* APIClient.swift */,
 				C206EEF3216B386B006DED90 /* APIServiceManager.swift */,
 			);
-			path = Networking;
+			path = API;
 			sourceTree = "<group>";
 		};
 		C20D8AB021688A39005FE2D5 /* Assets */ = {
@@ -248,7 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				C20D8AB021688A39005FE2D5 /* Assets */,
-				C20D8AAF21688A18005FE2D5 /* Networking */,
+				C20D8AAF21688A18005FE2D5 /* API */,
 				C20D8AAE216889C5005FE2D5 /* View Controllers */,
 				C20D8AAD216889A2005FE2D5 /* Storyboards & Xibs */,
 				C20D8AAC21688978005FE2D5 /* Views */,
@@ -278,6 +280,7 @@
 				C206EEE12168DEED006DED90 /* String.swift */,
 				C20A4961216B5D6800B0F5FC /* Date.swift */,
 				C20A4963216B68D100B0F5FC /* UInt.swift */,
+				C20A4971216C967100B0F5FC /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C20A4962216B5D6800B0F5FC /* Date.swift in Sources */,
+				C20A4972216C967100B0F5FC /* UIImageView.swift in Sources */,
 				C206EEE22168DEED006DED90 /* String.swift in Sources */,
 				C231DD32215F6C8200F9D329 /* UIView.swift in Sources */,
 				C20A496D216BB09700B0F5FC /* BuildTime.m in Sources */,
@@ -484,7 +488,7 @@
 				C231DD2F215EA89800F9D329 /* ListCell.swift in Sources */,
 				C206EEF0216A78D8006DED90 /* FloatingMenu.swift in Sources */,
 				C20D8AA921675B9F005FE2D5 /* UILabel.swift in Sources */,
-				C20D8A5B2165FC89005FE2D5 /* APIService.swift in Sources */,
+				C20D8A5B2165FC89005FE2D5 /* APIClient.swift in Sources */,
 				C20A4969216B8F5A00B0F5FC /* AboutViewController.swift in Sources */,
 				C231DD17215E005F00F9D329 /* HomeController.swift in Sources */,
 				C20D8AB921689767005FE2D5 /* MasonryLayoutAttributes.swift in Sources */,

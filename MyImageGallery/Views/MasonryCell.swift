@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 class MasonryCell: UICollectionViewCell {
     
@@ -27,14 +26,7 @@ class MasonryCell: UICollectionViewCell {
             
             guard let url = URL(string: link) else { return }
             
-            self.pictureView.sd_setImage(with: url) { [weak self] (_, err, _, _) in
-                if err != nil {
-                    print("Failed for: ", url)
-                }
-                else {
-                    self?.pictureView.backgroundColor = .clear
-                }
-            }
+            pictureView.loadImage(with: url)
         }
     }
 

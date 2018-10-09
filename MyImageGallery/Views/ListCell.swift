@@ -11,7 +11,7 @@ import UIKit
 class ListCell: UICollectionViewCell {
     var picture: Picture? {
         didSet {
-            numberOfViewsLabel.text = "\(picture?.views.decimalFormat() ?? "0")" + " views" //UInt extension method
+            numberOfViewsLabel.text = "\(picture?.views.decimalFormat() ?? "0") views" //UInt extension method
             descriptionLabel.text = picture?.description
             
             let uploadDate = picture?.uploadDate ?? Date()
@@ -21,13 +21,7 @@ class ListCell: UICollectionViewCell {
             
             guard let url = URL(string: link) else { return }
             
-            self.pictureView.sd_setImage(with: url) {[weak self] (_, err, _, _) in
-                if err != nil {
-                    print("Failed for: ", url)
-                } else {
-                    self?.pictureView.backgroundColor = .clear
-                }
-            }
+            pictureView.loadImage(with: url)
         }
     }
     

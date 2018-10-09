@@ -9,49 +9,35 @@
 import UIKit
 
 class HomeController: UICollectionViewController, CustomHeaderDelegate {
-    
-    private var currentLayoutType: Constants.LayoutType = .grid
-    
-    private var currentImageCategory: Constants.ImageCategory = .top
-    
-    private var isViral: Bool = true
-    
-    private let gridCellId = "gridCellId"
-    
-    private let listCellId = "listCellId"
-    
-    private let masonryCellId = "masonryCellId"
-    
-    private let headerId = "headerId"
-    
-    private let footerId = "footerId"
-    
-    private var headerView: CustomHeader?
-    
-    private var footerView: CustomFooter?
-    
-    private var pictures = [Picture]()
-    
-    private let contentInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
-    
-    fileprivate let interItemSpacing: CGFloat = 6
-    
-    fileprivate let lineSpacing: CGFloat = 6
-    
     //right bar button item
     private var infoBarButtonItem = UIBarButtonItem()
     private var rightBarButtonItems = [UIBarButtonItem]()
-    
     //left bar button items
     private var gridBarButtonItem = UIBarButtonItem()
     private var listBarButtonItem = UIBarButtonItem()
     private var masonryBarButtonItem = UIBarButtonItem()
-    
     private var leftBarButtonItems = [UIBarButtonItem]()
-
     private var selectedBarButtonItem: UIBarButtonItem?
+
+    private var currentLayoutType: Constants.LayoutType = .grid
+    private var currentImageCategory: Constants.ImageCategory = .top
+    private var isViral: Bool = true
+    private var currentPageNumber = -1
+    private var isFinishedPaging: Bool = false
+
+    private let gridCellId = "gridCellId"
+    private let listCellId = "listCellId"
+    private let masonryCellId = "masonryCellId"
+    private let headerId = "headerId"
+    private let footerId = "footerId"
+    private var headerView: CustomHeader?
+    private var footerView: CustomFooter?
+    private let contentInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+    private let interItemSpacing: CGFloat = 6
+    private let lineSpacing: CGFloat = 6
+    private var pictures = [Picture]()
     
-    let menuFloatingButton: FloatingButton = {
+    private let menuFloatingButton: FloatingButton = {
        let button = FloatingButton()
         button.setImage(UIImage(named: "menu")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.layer.cornerRadius = 35
@@ -82,8 +68,6 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
         setupCollectionView()
         
         setupMenuButtons()
-        
-        
     }
     
     private func setupMenuButtons() {
@@ -181,9 +165,6 @@ class HomeController: UICollectionViewController, CustomHeaderDelegate {
             self.collectionView.reloadData()
         }
     }
-
-    var currentPageNumber = -1
-    var isFinishedPaging: Bool = false
 
     private func fetchAndLoadPictures() {
         if currentPageNumber == -1 {
