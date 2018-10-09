@@ -2,7 +2,7 @@
 //  AboutViewController.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 08/10/18.
+//  Created by RGhate on 08/10/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
@@ -10,13 +10,14 @@ import UIKit
 
 class AboutViewController: UIViewController {
     
+    //app logo image
     @IBOutlet weak var logoImageView: UIImageView! {
         didSet {
             logoImageView.image = UIImage(named: "logo")?.withRenderingMode(.alwaysTemplate)
             logoImageView.tintColor = .appThemeColor
         }
     }
-    
+    //app title
     @IBOutlet weak var appTitleLabel: UILabel! {
         didSet {
             appTitleLabel.font = UIFont.boldSystemFont(ofSize: 22)
@@ -24,12 +25,15 @@ class AboutViewController: UIViewController {
             appTitleLabel.textColor = .darkText
         }
     }
+    
+    //divider line of one pixel
     @IBOutlet weak var dividerLineView: UIView! {
         didSet {
             dividerLineView.backgroundColor = .appThemeColor
         }
     }
     
+    //build time title
     @IBOutlet weak var buildTimeLabel: UILabel! {
         didSet {
             buildTimeLabel.text = "Build Time".uppercased()
@@ -39,6 +43,7 @@ class AboutViewController: UIViewController {
         }
     }
     
+    //build time value
     @IBOutlet weak var buildTimeValueLabel: UILabel! {
         didSet {
             buildTimeValueLabel.text = "-"
@@ -48,6 +53,7 @@ class AboutViewController: UIViewController {
         }
     }
     
+    //author title
     @IBOutlet weak var authorLabel: UILabel! {
         didSet {
             authorLabel.text = "Author".uppercased()
@@ -57,6 +63,7 @@ class AboutViewController: UIViewController {
         }
     }
     
+    //author value
     @IBOutlet weak var authorValueLabel: UILabel! {
         didSet {
             authorValueLabel.text = "-"
@@ -66,7 +73,7 @@ class AboutViewController: UIViewController {
         }
     }
     
-
+    //app version number
     @IBOutlet weak var versionValueLabel: UILabel! {
         didSet {
             versionValueLabel.text = ""
@@ -101,6 +108,8 @@ class AboutViewController: UIViewController {
         }
     }
     
+    //private methods
+
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
@@ -108,6 +117,7 @@ class AboutViewController: UIViewController {
     }
     
     @objc private func handleCancel() {
+        //close screen
         self.dismiss(animated: true, completion: nil)
     }
     

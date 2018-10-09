@@ -2,13 +2,14 @@
 //  HomeController.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 28/09/18.
+//  Created by RGhate on 28/09/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
 import UIKit
 
 class HomeController: UICollectionViewController {
+    //internal variables
     internal let gridCellId = "gridCellId"
     internal let listCellId = "listCellId"
     internal let masonryCellId = "masonryCellId"
@@ -20,7 +21,9 @@ class HomeController: UICollectionViewController {
     internal let lineSpacing: CGFloat = 6
     internal var pictures = [Picture]()
     internal var isFinishedPaging: Bool = false
-    
+    internal var currentLayoutType: Constants.LayoutType = .grid
+
+    //private variables
     //right bar button item
     private var infoBarButtonItem = UIBarButtonItem()
     private var rightBarButtonItems = [UIBarButtonItem]()
@@ -31,7 +34,6 @@ class HomeController: UICollectionViewController {
     private var leftBarButtonItems = [UIBarButtonItem]()
     private var selectedLeftBarButtonItem: UIBarButtonItem?
     private let contentInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
-    internal var currentLayoutType: Constants.LayoutType = .grid
     private var currentImageCategory: Constants.ImageCategory = .top
     private var currentPageNumber = -1
     private var isViral: Bool = true
@@ -56,6 +58,7 @@ class HomeController: UICollectionViewController {
         setupMenuButtons()
     }
     
+    //MARK: navigationbar methods
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -74,8 +77,8 @@ class HomeController: UICollectionViewController {
         selectedLeftBarButtonItem = gridBarButtonItem
         selectedLeftBarButtonItem?.tintColor = .appThemeColor
     }
-
-    //MARK: navigationbar buttom item handlers
+    
+    //MARK: navigationbar handlers
     /**
      Function to launch AboutViewController
      */
@@ -127,7 +130,7 @@ class HomeController: UICollectionViewController {
         reloadCollectionView()
     }
 
-    
+    //MARK: collectionView methods
     private func setupCollectionView() {
         collectionView.backgroundColor = .white
         
@@ -136,7 +139,7 @@ class HomeController: UICollectionViewController {
         layout?.delegate = self
         
         collectionView?.contentInset = contentInsets
-        collectionView.backgroundColor = UIColor.rgb(red: 245, green: 245, blue: 245)
+//        collectionView.backgroundColor = UIColor.rgb(red: 245, green: 245, blue: 245)
         
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         
@@ -157,6 +160,9 @@ class HomeController: UICollectionViewController {
         collectionView?.register(CustomFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
     }
     
+    
+    //MARK: FloatingMenu methods and handlers
+
     /** Function to add and place a floating menu-button in view
         (menuButton is used for displaying custom menu for selection of image categofy (hot/top/viral))
      */
@@ -172,7 +178,7 @@ class HomeController: UICollectionViewController {
         menuFloatingButton.layer.cornerRadius = buttonHeightWidth/2
         menuFloatingButton.addTarget(self, action: #selector(handleMenu), for: .touchUpInside)
     }
-
+    
     @objc private func handleMenu() {
         openFloatingMenu()
     }
@@ -192,7 +198,7 @@ class HomeController: UICollectionViewController {
         floatingMenu.delegate = self
     }
     
-    //MARK: Refresh control methods
+    //MARK: Refresh control methods and handlers
     /**
         Function to setup refresh control on collectionView
      */
@@ -263,13 +269,11 @@ class HomeController: UICollectionViewController {
         }
     }
 
-    
     private func reloadCollectionView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
-
 
     //MARK: scrollview methdod to add/remove navigationbar button items.
     /** When scrolling up - if scroll position goes above -40, show rightbar info button and leftbar items(grid, list and masonry).
@@ -303,27 +307,23 @@ class HomeController: UICollectionViewController {
 
 extension HomeController: FloatingMenuDelegate {
     
-    func getPictures(with category: Constants.ImageCategory) {
+    func didSelectPictureCategory(with category: Constants.ImageCategory) {
         if category == .hot {
-            print("Get hot pictures")
             currentImageCategory = .hot
         } else {
-            print("Get top pictures")
             currentImageCategory = .top
         }
         currentPageNumber = -1
         fetchAndLoadPictures()
     }
     
-    func showViralPictures() {
-        print("show viral pictures")
+    func didSelectViral() {
         isViral = true
         currentPageNumber = -1
         fetchAndLoadPictures()
     }
     
-    func hideViralPictures() {
-        print("hide viral pictures")
+    func didDeselectViral() {
         isViral = false
         currentPageNumber = -1
         fetchAndLoadPictures()

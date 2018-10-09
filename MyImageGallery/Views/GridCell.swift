@@ -2,7 +2,7 @@
 //  GridCell.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 28/09/18.
+//  Created by RGhate on 28/09/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
@@ -10,11 +10,13 @@ import UIKit
 
 class GridCell: UICollectionViewCell {
     
+    //MARK: Public properties
     var picture: Picture? {
         didSet {
+            //reset descriptionBackgroundView visibility
+            descriptionBackgroundView.isHidden = false
+
             if let description = picture?.description {
-                descriptionBackgroundView.isHidden = false
-                
                 if description.count > 0 {
                     descriptionLabel.text = picture?.description
                 } else {
@@ -25,18 +27,18 @@ class GridCell: UICollectionViewCell {
             guard let link = picture?.link else { return }
 
             guard let url = URL(string: link) else { return }
-
-            pictureView.loadImage(with: url)
+            
+            pictureView.loadImage(with: url)    //loadImage is an UIImageView extension method
         }
     }
     
-    @IBOutlet weak var descriptionBackgroundView: UIVisualEffectView!
+    @IBOutlet weak var descriptionBackgroundView: UIVisualEffectView!   //containts description labelView
     
     @IBOutlet weak var pictureView: UIImageView! {
         didSet {
             pictureView.contentMode = .scaleAspectFill
-            pictureView.backgroundColor = UIColor.rgb(red: 200, green: 200, blue: 200)
             pictureView.clipsToBounds = true
+            pictureView.backgroundColor = .placeholderBackgroundColor //default color before image loading
         }
     }
     @IBOutlet weak var descriptionLabel: UILabel! {
@@ -44,17 +46,16 @@ class GridCell: UICollectionViewCell {
             descriptionLabel.numberOfLines = 2
             descriptionLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
             descriptionLabel.textAlignment = .left
-            descriptionLabel.textColor = .black
+            descriptionLabel.textColor = .darkText
             descriptionLabel.text = ""
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         self.layer.cornerRadius = 8
         self.layer.masksToBounds = true
-        
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .placeholderBackgroundColor
     }
 }

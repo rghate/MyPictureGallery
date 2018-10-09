@@ -2,12 +2,15 @@
 //  CustomHeader.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 28/09/18.
+//  CustomHeader class displaying grid, list and masonry layout options.
+//
+//  Created by RGhate on 28/09/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
 import UIKit
 
+//MARK: Protocol
 protocol CustomHeaderDelegate {
     func didSelectInfo()
     func didSelectGridLayout()
@@ -17,41 +20,44 @@ protocol CustomHeaderDelegate {
 
 class CustomHeader: UICollectionViewCell {
 
+    //MARK: delegate
     var delegate: CustomHeaderDelegate?
     
-    @IBOutlet weak var filterButton: UIButton! {
+    @IBOutlet weak var infoButton: UIButton! {
         didSet {
-            filterButton.addTarget(self, action: #selector(handleInfoSelect), for: .touchUpInside)
+            infoButton.setImage(UIImage(named: "info")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            infoButton.addTarget(self, action: #selector(handleInfoSelect), for: .touchUpInside)
         }
     }
-
     
     @IBOutlet weak var gridButton: UIButton! {
         didSet {
+            gridButton.setImage(UIImage(named: "grid")?.withRenderingMode(.alwaysTemplate), for: .normal)
             gridButton.addTarget(self, action: #selector(handleGridLayoutSelect), for: .touchUpInside)
         }
     }
     
     @IBOutlet weak var listButton: UIButton! {
         didSet {
+            listButton.setImage(UIImage(named: "list")?.withRenderingMode(.alwaysTemplate), for: .normal)
             listButton.addTarget(self, action: #selector(handleListLayoutSelect), for: .touchUpInside)
         }
     }
     
     @IBOutlet weak var masonryButton: UIButton! {
         didSet {
+            masonryButton.setImage(UIImage(named: "masonry")?.withRenderingMode(.alwaysTemplate), for: .normal)
             masonryButton.addTarget(self, action: #selector(handleMasonryLayoutSelect), for: .touchUpInside)
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        addBlurrBackground()
-
+    
         updateColorOnSelection(for: gridButton)
     }
-
+    
+    //MARK: Public methods
     func layoutChanged(to type: Constants.LayoutType) {
         switch type {
         case .grid:
@@ -63,6 +69,8 @@ class CustomHeader: UICollectionViewCell {
         }
     }
     
+    //MARK: Button handlers
+
     @objc private func handleInfoSelect() {
         delegate?.didSelectInfo()
     }
@@ -82,14 +90,11 @@ class CustomHeader: UICollectionViewCell {
         delegate?.didSelectMasonryLayout()
     }
 
-    private func addBlurrBackground() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        insertSubview(blurEffectView, at: 0)
-    }
+    //MARK: Private methods
     
+    /**
+     Function to change selected button color
+     */
     private func updateColorOnSelection(for button: UIButton) {
         gridButton.tintColor = .lightGray
         listButton.tintColor = .lightGray

@@ -2,7 +2,7 @@
 //  HomeController+CustomLayoutDelegate.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 09/10/18.
+//  Created by RGhate on 09/10/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
@@ -62,5 +62,19 @@ extension HomeController: CustomLayoutDelegate {
             return cellHeight
         }
     }
+    
+    /**
+        Function to get approx width of the collectionView cell based on the device being used
+        works properly with iPhone 6 and above
+     */
+    private func getItemWidth() -> CGFloat {
+        switch UIDevice().model.lowercased() {
+        case "ipad":
+            return 250
+        default:
+            return 170
+        }
+    }
+
 }
 

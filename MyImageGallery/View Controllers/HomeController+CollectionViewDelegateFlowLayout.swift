@@ -2,7 +2,7 @@
 //  HomeController+CollectionViewDelegateFlowLayout.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 09/10/18.
+//  Created by RGhate on 09/10/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
@@ -52,16 +52,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pictures.count
     }
-    
-    internal func getItemWidth() -> CGFloat {
-        switch UIDevice().model.lowercased() {
-        case "ipad":
-            return 250
-        default:
-            return 170
-        }
-    }
-    
+        
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if pictures.count == 0 {

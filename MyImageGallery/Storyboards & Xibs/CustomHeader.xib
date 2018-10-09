@@ -28,7 +28,6 @@
                                     <constraint firstAttribute="width" secondItem="T45-Zx-4U4" secondAttribute="height" multiplier="1:1" id="9C1-yZ-qgj"/>
                                     <constraint firstAttribute="width" constant="30" id="bn8-no-uz4"/>
                                 </constraints>
-                                <state key="normal" image="grid"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfI-DO-VjW">
                                 <rect key="frame" x="50" y="0.0" width="30" height="30"/>
@@ -36,7 +35,6 @@
                                     <constraint firstAttribute="width" secondItem="GfI-DO-VjW" secondAttribute="height" multiplier="1:1" id="abe-ta-F6h"/>
                                     <constraint firstAttribute="width" constant="30" id="rkR-Ud-hs5"/>
                                 </constraints>
-                                <state key="normal" image="list"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NxQ-Yr-e8p">
                                 <rect key="frame" x="100" y="0.0" width="30" height="30"/>
@@ -44,7 +42,6 @@
                                     <constraint firstAttribute="width" constant="30" id="qx5-tP-8uY"/>
                                     <constraint firstAttribute="width" secondItem="NxQ-Yr-e8p" secondAttribute="height" multiplier="1:1" id="xax-li-anR"/>
                                 </constraints>
-                                <state key="normal" image="masonry"/>
                             </button>
                         </subviews>
                         <constraints>
@@ -58,7 +55,6 @@
                             <constraint firstAttribute="width" constant="30" id="Thy-BV-hwQ"/>
                         </constraints>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" image="info"/>
                     </button>
                 </subviews>
             </view>
@@ -71,18 +67,12 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="304" height="50"/>
             <connections>
-                <outlet property="filterButton" destination="16k-oM-XAK" id="InE-ZX-Qre"/>
                 <outlet property="gridButton" destination="T45-Zx-4U4" id="2r4-X1-iAA"/>
+                <outlet property="infoButton" destination="16k-oM-XAK" id="ZFj-Cv-PnX"/>
                 <outlet property="listButton" destination="GfI-DO-VjW" id="6CW-9A-IV8"/>
                 <outlet property="masonryButton" destination="NxQ-Yr-e8p" id="SkO-XF-Cha"/>
             </connections>
             <point key="canvasLocation" x="-46.399999999999999" y="-17.091454272863569"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="grid" width="100" height="100"/>
-        <image name="info" width="9" height="22"/>
-        <image name="list" width="100" height="100"/>
-        <image name="masonry" width="100" height="100"/>
-    </resources>
 </document>

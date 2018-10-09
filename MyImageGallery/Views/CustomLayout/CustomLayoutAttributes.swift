@@ -2,7 +2,7 @@
 //  CustomLayoutAttributes.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 28/09/18.
+//  Created by RGhate on 28/09/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 

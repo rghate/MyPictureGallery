@@ -2,13 +2,13 @@
 //  Picture.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 28/09/18.
+//  Created by RGhate on 28/09/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
 import Foundation
 
-struct Picture: Decodable {
+struct Picture: Codable {
     let link: String
     let description: String
     let type: String
@@ -17,16 +17,6 @@ struct Picture: Decodable {
     let height: Int?
     let uploadDate: Date
     let inMostViral: Bool
-
-//    init(link: String, description: String, type: String?, views: Int?, width: Int?, height: Int?) {
-//        self.link = link
-//        self.description = description
-//        self.type = type
-//        self.views = views
-//        self.width = width
-//        self.height = height
-//        self.uploadDate =
-//    }
 
     init?(dictionary: [String: Any]) {
         guard let link = dictionary["link"] as? String else { return nil }
@@ -45,16 +35,6 @@ struct Picture: Decodable {
         self.uploadDate = Date(timeIntervalSince1970: secondsFrom1970)
         
         self.inMostViral = dictionary["in_most_viral"] as? Bool ?? false
-
-//        print("Link: ", self.link)
-//        print("type: ", self.type)
-//        print("views: ", self.views)
-//        print("uploadDate: ", self.uploadDate)
-//        print("inMostViral: ", self.inMostViral)
-        for d in dictionary {
-            print("\(d.key) : \(d.value)")
-        }
-        print("===================================")
     }
 }
 

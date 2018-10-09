@@ -2,7 +2,7 @@
 //  CustomLayout.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 28/09/18.
+//  Created by RGhate on 28/09/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
@@ -10,26 +10,17 @@ import UIKit
 
 
 /**
- CustomLayout
+ Custom UICollectionView layout class
  */
 public class CustomLayout: UICollectionViewLayout {
-    
-    /**
-     Delegate.
-     */
+    //delegate
     public var delegate: CustomLayoutDelegate!
-    /**
-     Number of columns.
-     */
-    public var numberOfColumns: Int = 2
-    /**
-     Cell padding.
-     */
-    //  public var cellPadding: CGFloat = 4
+
+    public var numberOfColumns: Int = 2 //default to 2
     
-    private var cache = [CustomLayoutAttributes]()
+    private var cache = [CustomLayoutAttributes]()  //to store layout attributes
     private var contentHeight: CGFloat = 0
-    private var contentWidth: CGFloat {
+    private var contentWidth: CGFloat { // width of collectionView minus left and right insets
         get {
             let bounds = collectionView.bounds
             let insets = collectionView.contentInset
@@ -72,6 +63,9 @@ public class CustomLayout: UICollectionViewLayout {
         super.invalidateLayout()
     }
     
+    /**
+    Prepares layout attribute cache
+     */
     override public func prepare() {
         if cache.isEmpty {
             let itemWidth = delegate?.collectionView(widthForItemIn: collectionView)
@@ -192,8 +186,5 @@ public class CustomLayout: UICollectionViewLayout {
         
         return layoutAttributes
     }
-    
-    func clearCache() {
-        cache.removeAll()
-    }
+
 }

@@ -2,7 +2,7 @@
 //  BuildTime.m
 //  MyImageGallery
 //
-//  Created by Abhirup on 08/10/18.
+//  Created by RGhate on 08/10/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 

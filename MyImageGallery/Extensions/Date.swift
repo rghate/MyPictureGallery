@@ -2,13 +2,20 @@
 //  Date.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 08/10/18.
+//  Created by RGhate on 08/10/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
 import Foundation
 
 extension Date {
+    
+    /**
+     Convert date into readable sentence.
+     e.g. "2 min ago" or "3 days ago"
+     
+     @Returns - formatted string
+     */
     func timeAgoDisplay() -> String {
         let secondsAgo = Int(Date().timeIntervalSince(self))
         

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 27/09/18.
+//  Created by RGhate on 27/09/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 

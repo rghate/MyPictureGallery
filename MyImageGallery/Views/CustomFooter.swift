@@ -2,13 +2,18 @@
 //  CustomFooter.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 28/09/18.
+//  Custom footer class of collectionview. Contains activity indicator view and label to display
+//  text message.
+//
+//  Created by RGhate on 28/09/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
 import UIKit
 
 class CustomFooter: UICollectionViewCell {
+
+    //MARK: Private properties
 
     private let waitIndicator: UIActivityIndicatorView = {
        let indicatorView = UIActivityIndicatorView()
@@ -37,7 +42,10 @@ class CustomFooter: UICollectionViewCell {
         setupViews()
     }
     
-    //MARK: Public method(s)
+    //MARK: Public methods
+    /**
+     Set text to message label, with activity indicator visibility flag.
+     */
     func setMessage(withText text: String, visibleWaitIndicator: Bool) {
         messageLabel.text = text
         
@@ -46,9 +54,12 @@ class CustomFooter: UICollectionViewCell {
         } else {
             waitIndicator.stopAnimating()
         }
-        waitIndicator.isHidden = !visibleWaitIndicator
+        waitIndicator.isHidden = !visibleWaitIndicator  //store status
     }
 
+    /**
+        Reset text from message label, with activity indicator visibility flag.
+     */
     func resetMessage(visibleWaitIndicator: Bool) {
         messageLabel.text = ""
         
@@ -57,20 +68,31 @@ class CustomFooter: UICollectionViewCell {
         } else {
             waitIndicator.stopAnimating()
         }
-        waitIndicator.isHidden = !visibleWaitIndicator
+        waitIndicator.isHidden = !visibleWaitIndicator  //store status
     }
 
 
-    //MARK: Private method(s)
+    //MARK: Private methods
 
     private func setupViews() {
         addSubview(messageLabel)
+        //messageLabel constraints
+        
+        //centered vertically
         messageLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        //left anchor from view
         messageLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+        //right anchor from view
         messageLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
         
+
         addSubview(waitIndicator)
+
+        //waitIndicator constraints
+        
+        //centered horizontally
         waitIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        //top anchor below messageLabel
         waitIndicator.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -10).isActive = true
     }
     

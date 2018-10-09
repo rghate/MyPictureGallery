@@ -2,19 +2,22 @@
 //  String.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 06/10/18.
+//  Created by RGhate on 06/10/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
 import Foundation
 
 extension StringProtocol where Index == String.Index {
+    
     func index(of string: Self, options: String.CompareOptions = []) -> Index? {
         return range(of: string, options: options)?.lowerBound
     }
+    
     func endIndex(of string: Self, options: String.CompareOptions = []) -> Index? {
         return range(of: string, options: options)?.upperBound
     }
+    
     func indexes(of string: Self, options: String.CompareOptions = []) -> [Index] {
         var result: [Index] = []
         var start = startIndex
@@ -26,6 +29,7 @@ extension StringProtocol where Index == String.Index {
         }
         return result
     }
+
     func ranges(of string: Self, options: String.CompareOptions = []) -> [Range<Index>] {
         var result: [Range<Index>] = []
         var start = startIndex

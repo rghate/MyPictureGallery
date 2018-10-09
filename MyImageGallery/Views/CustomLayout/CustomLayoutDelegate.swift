@@ -2,7 +2,7 @@
 //  CustomLayoutDelegate.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 28/09/18.
+//  Created by RGhate on 28/09/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
@@ -56,19 +56,7 @@ import UIKit
     func collectionView(collectionView: UICollectionView,
                         heightForItemAt indexPath: IndexPath) -> CGFloat
     
-    /**
-     Height for annotation view in cell.
-     
-     @param collectionView - collectionView
-     @param indexPath - index path for cell
-     
-     Returns height of annotation view.
-     
-     func collectionView(collectionView: UICollectionView,
-     heightForAnnotationAtIndexPath indexPath: IndexPath,
-     withWidth: CGFloat) -> CGFloat
-     */
-    
+
     /**
      Spacing between the rows of collectionView.
      

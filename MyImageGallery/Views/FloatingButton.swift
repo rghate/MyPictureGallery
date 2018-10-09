@@ -2,7 +2,9 @@
 //  FloatingButton.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 07/10/18.
+//  Floating button class for rounded button with shadow.
+//
+//  Created by RGhate on 07/10/18.
 //  Copyright © 2018 rghate. All rights reserved.
 //
 
@@ -13,6 +15,7 @@ class FloatingButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        //default properties -- can be overriden in parent class
         backgroundColor = UIColor.appThemeColor
         layer.cornerRadius = 35
         layer.masksToBounds = false
@@ -23,6 +26,9 @@ class FloatingButton: UIButton {
         titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
     }
     
+    
+    //MARK: Public methods
+
     func disable() {
         tintColor = .lightGray
         isUserInteractionEnabled = false

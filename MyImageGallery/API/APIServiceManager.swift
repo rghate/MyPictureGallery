@@ -2,17 +2,17 @@
 //  APIServiceManager.swift
 //  MyImageGallery
 //
-//  Created by Abhirup on 08/10/18.
-//  Copyright © 2018 rghate. All rights reserved.
+//  Created by RGhate on 08/10/18.
 //
 
 import Foundation
 
 final class APIServiceManager {
     
-    //private variables
+    //singleton
     static let shared = APIServiceManager()
 
+    //Private variables
     private let httpClient = APIClient()
     private let baseUrlString = "https://api.imgur.com/3/gallery/"
 
@@ -39,10 +39,18 @@ final class APIServiceManager {
 
     
     //public method(s)
-    func getPictures(forCategory category: Constants.ImageCategory, showViralImages: Bool, pageNumber: Int, completion: @escaping ((error: CustomError?, pictures: [Picture]))->Void ) {
-
+    func getPictures(forCategory category: Constants.ImageCategory, showViralImages: Bool, pageNumber: Int,
+                     completion: @escaping ((error: CustomError?, pictures: [Picture]))->Void ) {
+        
+        
+        print("Viral ", showViralImages)
+        
+        print("Viral ", category.rawValue)
+        
         let window = Window.all
-        let sortBy = showViralImages ? SortBy.viral : SortBy.time //if viral enabled, request sortedby viral, else by time
+
+        //if viral enabled, request sortedby viral, else by time
+        let sortBy = showViralImages ? SortBy.viral : SortBy.time
         
         //construct complete url
         let urlStr = "\(baseUrlString)/\(category.rawValue)/\(sortBy)/\(window)/\(pageNumber)"
@@ -68,7 +76,8 @@ final class APIServiceManager {
             }
             
             var pictures = [Picture]()
-
+            
+            //if failed to get data, return error back
             guard let json = responseData.result.value as? [String: Any], let dataDictArr = json["data"] as? [[String: Any]] else {
                 responseError = CustomError(description: "Invalid response data")
                 return completion((responseError, pictures: pictures))
