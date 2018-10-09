@@ -14,15 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IMGSessionDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         window = UIWindow()
         window?.makeKeyAndVisible()
         
         let layout = CustomLayout()
-        let homeController = HomeController(collectionViewLayout: layout)
-        let navController = UINavigationController(rootViewController: homeController)
+        let homeVC = HomeViewController(collectionViewLayout: layout)
+        let navController = UINavigationController(rootViewController: homeVC)
         window?.rootViewController = navController
 
         //configure Imgur session as anonymous

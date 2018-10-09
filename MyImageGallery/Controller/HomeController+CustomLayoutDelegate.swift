@@ -1,5 +1,5 @@
 //
-//  HomeController+CustomLayoutDelegate.swift
+//  HomeViewController+CustomLayoutDelegate.swift
 //  MyImageGallery
 //
 //  Created by RGhate on 09/10/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension HomeController: CustomLayoutDelegate {
+extension HomeViewController: CustomLayoutDelegate {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return lineSpacing

@@ -1,5 +1,5 @@
 //
-//  HomeController+CollectionViewDelegateFlowLayout.swift
+//  HomeViewController+CollectionViewDelegateFlowLayout.swift
 //  MyImageGallery
 //
 //  Created by RGhate on 09/10/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension HomeController: UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, sizeForSectionHeaderViewForSection section: Int) -> CGSize {
         if pictures.count > 0 {
@@ -60,7 +60,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
         }
         
         if indexPath.item == self.pictures.count - 1 && !isFinishedPaging {
-            fetchAndLoadPictures()
+            paginatePictures()
         }
         
         if currentLayoutType ==  .grid {

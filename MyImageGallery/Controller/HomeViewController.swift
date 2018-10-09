@@ -1,5 +1,5 @@
 //
-//  HomeController.swift
+//  HomeViewController.swift
 //  MyImageGallery
 //
 //  Created by RGhate on 28/09/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeController: UICollectionViewController {
+class HomeViewController: UICollectionViewController {
     //internal variables
     internal let gridCellId = "gridCellId"
     internal let listCellId = "listCellId"
@@ -17,11 +17,11 @@ class HomeController: UICollectionViewController {
     internal let footerId = "footerId"
     internal var headerView: CustomHeader?
     internal var footerView: CustomFooter?
-    internal let interItemSpacing: CGFloat = 6
-    internal let lineSpacing: CGFloat = 6
+    internal let interItemSpacing: CGFloat = 6  //spacing between columns of collectionView
+    internal let lineSpacing: CGFloat = 6       //spacing between rows of collectionView
     internal var pictures = [Picture]()
-    internal var isFinishedPaging: Bool = false
-    internal var currentLayoutType: Constants.LayoutType = .grid
+    internal var isFinishedPaging: Bool = false  //flag to check when images from last availabe page are downloaded
+    internal var currentLayoutType: Constants.LayoutType = .grid    //defaults to grid layout
 
     //private variables
     //right bar button item
@@ -31,11 +31,11 @@ class HomeController: UICollectionViewController {
     private var gridBarButtonItem = UIBarButtonItem()
     private var listBarButtonItem = UIBarButtonItem()
     private var masonryBarButtonItem = UIBarButtonItem()
-    private var leftBarButtonItems = [UIBarButtonItem]()
-    private var selectedLeftBarButtonItem: UIBarButtonItem?
-    private let contentInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
-    private var currentImageCategory: Constants.ImageCategory = .top
-    private var currentPageNumber = -1
+    private var leftBarButtonItems = [UIBarButtonItem]()//references to BarButtonItems for all three layouts(grid/list/masonry)
+    private var selectedLeftBarButtonItem: UIBarButtonItem? //references to BarButtonItem for the selected layout(grid/list/masonry)
+    private let contentInsets = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)   //outer spacing of UICollectionView
+    private var currentImageCategory: Constants.ImageCategory = .top  //category of the pictues(hot/top) being downloaded and displayed
+    private var currentPageNumber = -1  //holds the page number (for pigination) to download the images from
     private var isViral: Bool = true
 
     private var menuFloatingButton = FloatingButton()
@@ -47,7 +47,7 @@ class HomeController: UICollectionViewController {
 
         setupViews()
         setupRefreshControl()
-        fetchAndLoadPictures()
+        paginatePictures()
     }
 
     private func setupViews() {
@@ -212,11 +212,15 @@ class HomeController: UICollectionViewController {
      download pictures to reload collectionView will latest images
      */
     @objc private func handleRefresh() {
-        fetchAndLoadPictures()
-        self.footerView?.setMessage(withText: "Please wait", visibleWaitIndicator: false)
+        currentPageNumber = -1
+        paginatePictures()
+        footerView?.setMessage(withText: "Please wait", visibleWaitIndicator: false)
     }
 
-    internal func fetchAndLoadPictures() {
+    /**
+        Invoke an api from APIServicecManager class to download pictures from the spcified page number.
+     */
+    internal func paginatePictures() {
         if currentPageNumber == -1 {
             prepareBeforeDataDownload()
         } else {
@@ -224,18 +228,17 @@ class HomeController: UICollectionViewController {
             footerView?.setMessage(withText: "Please wait", visibleWaitIndicator: true)
         }
         currentPageNumber += 1
-        APIServiceManager.shared.getPictures(forCategory: currentImageCategory, showViralImages: isViral,pageNumber: currentPageNumber) { [weak self] (err, pictures) in
+        let err = APIServiceManager.shared.getPictures(forCategory: currentImageCategory, showViralImages: isViral,pageNumber: currentPageNumber) { [weak self] (err, pictures) in
             guard let self = self else { return }
             
-            //self.pictures.removeAll()
-            
             self.collectionView.refreshControl?.endRefreshing()
+
             if let err = err {
-                self.collectionView.reloadData()
-                CustomAlert().showAlert(withTitle: "Error", message: err.localizedDescription, viewController: self)
-                self.footerView?.setMessage(withText: "Something is wrong 😢.\n\n Drag down to try again.", visibleWaitIndicator:  false)
+                self.prepareAfterDataDownloadFailed(err: err)
                 return
             }
+            
+            //append picture data downloaded from new page to the existing pictures.
             if pictures.count > 0 {
                 pictures.forEach({ (picture) in
                     self.pictures.append(picture)
@@ -244,6 +247,9 @@ class HomeController: UICollectionViewController {
                 self.isFinishedPaging = true
             }
             self.prepareAfterDataDownload()
+        }
+        if let err = err {
+            prepareAfterDataDownloadFailed(err: err)
         }
     }
 
@@ -266,9 +272,19 @@ class HomeController: UICollectionViewController {
         
         if !isFinishedPaging {
             reloadCollectionView()
+        } else {
+            currentPageNumber = -1
         }
     }
 
+    private func prepareAfterDataDownloadFailed(err: CustomError) {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            CustomAlert().showAlert(withTitle: "Error", message: err.localizedDescription, viewController: self)
+            self.footerView?.setMessage(withText: "Something is wrong 😢.\n\n Drag down to try again.", visibleWaitIndicator:  false)
+        }
+    }
+    
     private func reloadCollectionView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -305,7 +321,7 @@ class HomeController: UICollectionViewController {
 
 //MARK: extension to handle FloatingMenuDelegate methods
 
-extension HomeController: FloatingMenuDelegate {
+extension HomeViewController: FloatingMenuDelegate {
     
     func didSelectPictureCategory(with category: Constants.ImageCategory) {
         if category == .hot {
@@ -314,26 +330,26 @@ extension HomeController: FloatingMenuDelegate {
             currentImageCategory = .top
         }
         currentPageNumber = -1
-        fetchAndLoadPictures()
+        paginatePictures()
     }
     
     func didSelectViral() {
         isViral = true
         currentPageNumber = -1
-        fetchAndLoadPictures()
+        paginatePictures()
     }
     
     func didDeselectViral() {
         isViral = false
         currentPageNumber = -1
-        fetchAndLoadPictures()
+        paginatePictures()
     }
 }
 
 
 //MARK: extension to handle CustomHeaderDelegate methods
 
-extension HomeController: CustomHeaderDelegate{
+extension HomeViewController: CustomHeaderDelegate{
     //MARK: CustomHeaderDelegate methods
     
     func didSelectInfo() {

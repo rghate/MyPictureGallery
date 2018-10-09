@@ -35,8 +35,8 @@
 		C231DCEA215D109E00F9D329 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C231DCE8215D109E00F9D329 /* Main.storyboard */; };
 		C231DCEC215D10A000F9D329 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C231DCEB215D10A000F9D329 /* Assets.xcassets */; };
 		C231DCEF215D10A000F9D329 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C231DCED215D10A000F9D329 /* LaunchScreen.storyboard */; };
-		C231DCFA215D10A000F9D329 /* MyImageGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DCF9215D10A000F9D329 /* MyImageGalleryTests.swift */; };
-		C231DD17215E005F00F9D329 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD16215E005F00F9D329 /* HomeController.swift */; };
+		C231DCFA215D10A000F9D329 /* APIServiceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DCF9215D10A000F9D329 /* APIServiceManagerTests.swift */; };
+		C231DD17215E005F00F9D329 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD16215E005F00F9D329 /* HomeViewController.swift */; };
 		C231DD1E215E095F00F9D329 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD1C215E095F00F9D329 /* CustomHeader.swift */; };
 		C231DD1F215E095F00F9D329 /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C231DD1D215E095F00F9D329 /* CustomHeader.xib */; };
 		C231DD21215E4B9A00F9D329 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C231DD20215E4B9A00F9D329 /* Picture.swift */; };
@@ -95,9 +95,9 @@
 		C231DCEE215D10A000F9D329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C231DCF0215D10A000F9D329 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C231DCF5215D10A000F9D329 /* MyImageGalleryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyImageGalleryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C231DCF9215D10A000F9D329 /* MyImageGalleryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImageGalleryTests.swift; sourceTree = "<group>"; };
+		C231DCF9215D10A000F9D329 /* APIServiceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManagerTests.swift; sourceTree = "<group>"; };
 		C231DCFB215D10A000F9D329 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C231DD16215E005F00F9D329 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		C231DD16215E005F00F9D329 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C231DD1C215E095F00F9D329 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		C231DD1D215E095F00F9D329 /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
 		C231DD20215E4B9A00F9D329 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
@@ -157,15 +157,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C20D8AAB2168895F005FE2D5 /* Models */ = {
+		C20D8AAB2168895F005FE2D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				C231DD20215E4B9A00F9D329 /* Picture.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		C20D8AAC21688978005FE2D5 /* Views */ = {
+		C20D8AAC21688978005FE2D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				C20D8AB321689751005FE2D5 /* CustomLayout */,
@@ -177,7 +177,7 @@
 				C206EEED216A7014006DED90 /* FloatingButton.swift */,
 				C206EEEF216A78D8006DED90 /* FloatingMenu.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		C20D8AAD216889A2005FE2D5 /* Storyboards & Xibs */ = {
@@ -194,15 +194,15 @@
 			path = "Storyboards & Xibs";
 			sourceTree = "<group>";
 		};
-		C20D8AAE216889C5005FE2D5 /* View Controllers */ = {
+		C20D8AAE216889C5005FE2D5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C231DD16215E005F00F9D329 /* HomeController.swift */,
+				C231DD16215E005F00F9D329 /* HomeViewController.swift */,
 				C20A4967216B8F5A00B0F5FC /* AboutViewController.swift */,
 				C20A4977216CD46400B0F5FC /* HomeController+CollectionViewDelegateFlowLayout.swift */,
 				C20A4979216CD50100B0F5FC /* HomeController+CustomLayoutDelegate.swift */,
 			);
-			path = "View Controllers";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		C20D8AAF21688A18005FE2D5 /* API */ = {
@@ -257,10 +257,10 @@
 			children = (
 				C20D8AB021688A39005FE2D5 /* Assets */,
 				C20D8AAF21688A18005FE2D5 /* API */,
-				C20D8AAE216889C5005FE2D5 /* View Controllers */,
+				C20D8AAE216889C5005FE2D5 /* Controller */,
 				C20D8AAD216889A2005FE2D5 /* Storyboards & Xibs */,
-				C20D8AAC21688978005FE2D5 /* Views */,
-				C20D8AAB2168895F005FE2D5 /* Models */,
+				C20D8AAC21688978005FE2D5 /* View */,
+				C20D8AAB2168895F005FE2D5 /* Model */,
 				C20D8AAA2168892E005FE2D5 /* Supporting Files */,
 				C231DD2A215E62C000F9D329 /* Extensions */,
 				C231DCE4215D109E00F9D329 /* AppDelegate.swift */,
@@ -271,7 +271,7 @@
 		C231DCF8215D10A000F9D329 /* MyImageGalleryTests */ = {
 			isa = PBXGroup;
 			children = (
-				C231DCF9215D10A000F9D329 /* MyImageGalleryTests.swift */,
+				C231DCF9215D10A000F9D329 /* APIServiceManagerTests.swift */,
 				C231DCFB215D10A000F9D329 /* Info.plist */,
 			);
 			path = MyImageGalleryTests;
@@ -498,7 +498,7 @@
 				C20D8AA921675B9F005FE2D5 /* UILabel.swift in Sources */,
 				C20D8A5B2165FC89005FE2D5 /* APIClient.swift in Sources */,
 				C20A4969216B8F5A00B0F5FC /* AboutViewController.swift in Sources */,
-				C231DD17215E005F00F9D329 /* HomeController.swift in Sources */,
+				C231DD17215E005F00F9D329 /* HomeViewController.swift in Sources */,
 				C20D8AB921689767005FE2D5 /* CustomLayoutAttributes.swift in Sources */,
 				C231DD1E215E095F00F9D329 /* CustomHeader.swift in Sources */,
 				C20D8AB821689767005FE2D5 /* CustomLayout.swift in Sources */,
@@ -511,7 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C231DCFA215D10A000F9D329 /* MyImageGalleryTests.swift in Sources */,
+				C231DCFA215D10A000F9D329 /* APIServiceManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +596,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -651,7 +651,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
