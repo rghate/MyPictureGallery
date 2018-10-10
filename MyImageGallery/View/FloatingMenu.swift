@@ -39,7 +39,7 @@ class FloatingMenu: UIView {
 
     private let fullScreenOverlay: UIView = {
        let view = UIView()
-        view.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        view.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
         return view
     }()
@@ -51,12 +51,25 @@ class FloatingMenu: UIView {
         return button
     }()
     
+    //button to show selectio of 'hot' or 'top' images
     private lazy var imageCategorySelectionButton: FloatingButton = {
        let button = FloatingButton()
         button.addTarget(self, action: #selector(handlePopularitySelection), for: .touchUpInside)
         return button
     }()
     
+    //image category label
+    private let imageCategoryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Show Hot"
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.textAlignment = .left
+
+        return label
+    }()
+    
+    //toggle button to show include/exclude viral images
     private let viralToggleButton: FloatingButton = {
         let button = FloatingButton()
         button.setImage(UIImage(named: "viral")?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -64,6 +77,16 @@ class FloatingMenu: UIView {
         return button
     }()
 
+    //image category label
+    private let viralToggleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Hide Viral"
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.textAlignment = .left
+        
+        return label
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,25 +99,46 @@ class FloatingMenu: UIView {
     //MARK: Private methods
 
     private func setupViews() {
-        addSubview(fullScreenOverlay)
+        let buttonsize = CGSize(width: 70, height: 70)
         
+        // overlay view to display a semi transparent black fullscreen background view when menu is shown
+        addSubview(fullScreenOverlay)
         fullScreenOverlay.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
 
         addSubview(menuButton)
-        menuButton.anchor(top: nil, left: safeAreaLayoutGuide.leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: 70, height: 70)
+        //place menuButton at the bottom-left corner of screen, with bottom-left padding and width-height
+        menuButton.anchor(top: nil, left: safeAreaLayoutGuide.leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: buttonsize.width, height: buttonsize.height)
+
         
         addSubview(imageCategorySelectionButton)
-        imageCategorySelectionButton.anchor(top: nil, left: safeAreaLayoutGuide.leftAnchor, bottom: menuButton.topAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: 70, height: 70)
+        //place at bottom-left corner of screen, above menu button, with bottom and left padding
+        imageCategorySelectionButton.anchor(top: nil, left: safeAreaLayoutGuide.leftAnchor, bottom: menuButton.topAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: buttonsize.width, height: buttonsize.height)
+
+        addSubview(imageCategoryLabel)
+        //place imageCategoryLabel adjacent to imageCategorySelectionButton
+        imageCategoryLabel.anchor(top: nil, left: imageCategorySelectionButton.rightAnchor, bottom: nil, right: safeAreaLayoutGuide.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        //align imageCategoryLabel centrally vertical to imageCategorySelectionButton
+        imageCategoryLabel.centerYAnchor.constraint(equalTo: imageCategorySelectionButton.centerYAnchor).isActive = true
+
         
         addSubview(viralToggleButton)
-        viralToggleButton.anchor(top: nil, left: safeAreaLayoutGuide.leftAnchor, bottom: imageCategorySelectionButton.topAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: 70, height: 70)
+        //place at bottom-left corner of screen, above imageCategory button, with bottom and left padding
+        viralToggleButton.anchor(top: nil, left: safeAreaLayoutGuide.leftAnchor, bottom: imageCategorySelectionButton.topAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: buttonsize.width, height: buttonsize.height)
+        
+        addSubview(viralToggleLabel)
+        //place viralToggleLabel adjacent to viralToggleButton
+        viralToggleLabel.anchor(top: nil, left: viralToggleButton.rightAnchor, bottom: nil, right: safeAreaLayoutGuide.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        //align viralToggleLabel centrally vertical to viralToggleButton
+        viralToggleLabel.centerYAnchor.constraint(equalTo: viralToggleButton.centerYAnchor).isActive = true
     }
     
     private func setImageCategoryButtonImage() {
         if imageCategory == .hot {
             imageCategorySelectionButton.setImage(UIImage(named: "top")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            imageCategoryLabel.text = "Show Top"
         } else {
             imageCategorySelectionButton.setImage(UIImage(named: "hot")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            imageCategoryLabel.text = "Show Hot"
         }
     }
 
@@ -102,8 +146,10 @@ class FloatingMenu: UIView {
         
         if isViral {
             viralToggleButton.backgroundColor = .appThemeColor
+            viralToggleLabel.text = "Include Viral"
         } else {
             viralToggleButton.backgroundColor = .gray
+            viralToggleLabel.text = "Exclude Viral"
         }
     }
 
