@@ -116,16 +116,8 @@ public class CustomLayout: UICollectionViewLayout {
                     
                     let columnSpacing = delegate.collectionView(collectionView: collectionView, layout: self, minimumInteritemSpacingForSectionAt: section)
                     
-                    //          let cellWidth = collumnWidth - (columnSpacing * 2)
-                    
                     let itemHeight = delegate.collectionView(collectionView: collectionView, heightForItemAt: indexPath)
                     
-                    /*          let annotationHeight = delegate.collectionView(
-                     collectionView: collectionView,
-                     heightForAnnotationAtIndexPath: indexPath,
-                     withWidth: cellWidth
-                     )
-                     */
                     let rowSpacing = delegate.collectionView(collectionView: collectionView, layout: self, minimumLineSpacingForSectionAt: section)
                     
                     let cellHeight = rowSpacing + itemHeight + /*annotationHeight +*/ rowSpacing

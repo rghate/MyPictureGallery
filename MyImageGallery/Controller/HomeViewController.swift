@@ -15,6 +15,7 @@ class HomeViewController: UICollectionViewController {
     internal let masonryCellId = "masonryCellId"
     internal let headerId = "headerId"
     internal let footerId = "footerId"
+    internal let headerViewHeight: CGFloat = 60
     internal var headerView: CustomHeader?
     internal var footerView: CustomFooter?
     internal let interItemSpacing: CGFloat = 6  //spacing between columns of collectionView
@@ -22,7 +23,7 @@ class HomeViewController: UICollectionViewController {
     internal var pictures = [Picture]()
     internal var isFinishedPaging: Bool = false  //flag to check when images from last availabe page are downloaded
     internal var currentLayoutType: Constants.LayoutType = .grid    //defaults to grid layout
-
+    
     //private variables
     //right bar button item
     private var infoBarButtonItem = UIBarButtonItem()
@@ -140,11 +141,11 @@ class HomeViewController: UICollectionViewController {
         let layout = collectionView.collectionViewLayout as? CustomLayout
         layout?.delegate = self
         
-        // this is to consider 'safe area' in landscape mode. Since this screen uses custom layout, the
-        // 'flowLayout.sectionInsetReference = = .fromSafeArea' property of default layout is not availble
-        collectionView?.contentInset = isLandscape() ? landscapeContentInsets : portraitContentInsets
-        
-        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        //set collectionView contentInsets based on device orientation
+        updateContentInsets(for: collectionView)
+
+        //start scrollview indicator below the headerViwe
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: headerViewHeight, left: 0, bottom: 0, right: 0)
         
         //register for grid cell
         let gridCellNib = UINib(nibName: "GridCell", bundle: nil)
@@ -318,16 +319,19 @@ class HomeViewController: UICollectionViewController {
     /** reload collection view on device rotation */
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-
-        // this is to consider 'safe area' in landscape mode. Since this screen uses custom layout, the
-        // 'flowLayout.sectionInsetReference = = .fromSafeArea' property of default layout is not availble
-        collectionView?.contentInset = isLandscape() ? landscapeContentInsets : portraitContentInsets
-
+        updateContentInsets(for: collectionView)
         reloadCollectionView()
     }
     
     private func isLandscape() -> Bool {
         return UIDevice.current.orientation.isLandscape
+    }
+    
+    /** update content insets of collectionview based on device orientation */
+    private func updateContentInsets(for collectionView: UICollectionView) {
+        // this is to consider 'safe area' in landscape mode. Since this screen uses custom layout, the
+        // 'flowLayout.sectionInsetReference = = .fromSafeArea' property of default layout is not availble
+        collectionView.contentInset = isLandscape() ? landscapeContentInsets : portraitContentInsets
     }
 }
 

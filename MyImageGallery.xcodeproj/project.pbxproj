@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		7F702B45DC3A71E4788C1D9B /* Pods_MyImageGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3DD8F2C6EA7FA1961A5F928 /* Pods_MyImageGallery.framework */; };
 		8BC415A4DB027165D0BB0C0C /* Pods_MyImageGalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A037EE8C7B9CF34298245B /* Pods_MyImageGalleryTests.framework */; };
-		C206EEE22168DEED006DED90 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEE12168DEED006DED90 /* String.swift */; };
 		C206EEE8216937E6006DED90 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEE7216937E6006DED90 /* CustomAlert.swift */; };
 		C206EEEE216A7014006DED90 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEED216A7014006DED90 /* FloatingButton.swift */; };
 		C206EEF0216A78D8006DED90 /* FloatingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEEF216A78D8006DED90 /* FloatingMenu.swift */; };
 		C206EEF4216B386B006DED90 /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EEF3216B386B006DED90 /* APIServiceManager.swift */; };
+		C209539A216DC47B00B37399 /* PictureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2095399216DC47B00B37399 /* PictureTests.swift */; };
 		C20A4962216B5D6800B0F5FC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4961216B5D6800B0F5FC /* Date.swift */; };
 		C20A4964216B68D200B0F5FC /* UInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4963216B68D100B0F5FC /* UInt.swift */; };
 		C20A4969216B8F5A00B0F5FC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A4967216B8F5A00B0F5FC /* AboutViewController.swift */; };
@@ -64,11 +64,11 @@
 		53E14AB6B0C22D4DE72A216C /* Pods-MyImageGallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyImageGallery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyImageGallery/Pods-MyImageGallery.debug.xcconfig"; sourceTree = "<group>"; };
 		58A037EE8C7B9CF34298245B /* Pods_MyImageGalleryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyImageGalleryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DD8F2C6EA7FA1961A5F928 /* Pods_MyImageGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyImageGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C206EEE12168DEED006DED90 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C206EEE7216937E6006DED90 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		C206EEED216A7014006DED90 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		C206EEEF216A78D8006DED90 /* FloatingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMenu.swift; sourceTree = "<group>"; };
 		C206EEF3216B386B006DED90 /* APIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManager.swift; sourceTree = "<group>"; };
+		C2095399216DC47B00B37399 /* PictureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureTests.swift; sourceTree = "<group>"; };
 		C20A4961216B5D6800B0F5FC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C20A4963216B68D100B0F5FC /* UInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt.swift; sourceTree = "<group>"; };
 		C20A4967216B8F5A00B0F5FC /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +273,7 @@
 			children = (
 				C231DCF9215D10A000F9D329 /* APIServiceManagerTests.swift */,
 				C231DCFB215D10A000F9D329 /* Info.plist */,
+				C2095399216DC47B00B37399 /* PictureTests.swift */,
 			);
 			path = MyImageGalleryTests;
 			sourceTree = "<group>";
@@ -283,7 +284,6 @@
 				C231DD2B215E62D800F9D329 /* UIColor.swift */,
 				C20D8AA821675B9F005FE2D5 /* UILabel.swift */,
 				C231DD31215F6C8200F9D329 /* UIView.swift */,
-				C206EEE12168DEED006DED90 /* String.swift */,
 				C20A4961216B5D6800B0F5FC /* Date.swift */,
 				C20A4963216B68D100B0F5FC /* UInt.swift */,
 				C20A4971216C967100B0F5FC /* UIImageView.swift */,
@@ -477,7 +477,6 @@
 			files = (
 				C20A4962216B5D6800B0F5FC /* Date.swift in Sources */,
 				C20A4972216C967100B0F5FC /* UIImageView.swift in Sources */,
-				C206EEE22168DEED006DED90 /* String.swift in Sources */,
 				C231DD32215F6C8200F9D329 /* UIView.swift in Sources */,
 				C20A496D216BB09700B0F5FC /* BuildTime.m in Sources */,
 				C206EEEE216A7014006DED90 /* FloatingButton.swift in Sources */,
@@ -511,6 +510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C209539A216DC47B00B37399 /* PictureTests.swift in Sources */,
 				C231DCFA215D10A000F9D329 /* APIServiceManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

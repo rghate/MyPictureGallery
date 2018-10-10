@@ -19,10 +19,10 @@ struct Picture: Codable {
     let inMostViral: Bool
 
     init?(dictionary: [String: Any]) {
-        guard let link = dictionary["link"] as? String else { return nil }
+      guard let link = dictionary["link"] as? String else { return nil }
         
         //return if image type is 'video'
-        guard let type = dictionary["type"] as? String, type.lowercased().range(of: "video") == nil else { return nil }
+        guard let type = dictionary["type"] as? String, type.contains("video/") == false else { return nil }
         
         self.link = link
         self.description = dictionary["description"] as? String ?? ""
