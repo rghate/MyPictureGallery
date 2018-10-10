@@ -27,7 +27,7 @@ class CustomFooter: UICollectionViewCell {
     private let messageLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = ""
+        label.text = "Please wait"
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0

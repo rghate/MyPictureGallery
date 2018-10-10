@@ -61,7 +61,7 @@ class FloatingMenu: UIView {
     //image category label
     private let imageCategoryLabel: UILabel = {
         let label = UILabel()
-        label.text = "Show Hot"
+        label.text = ""
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textAlignment = .left
@@ -80,7 +80,7 @@ class FloatingMenu: UIView {
     //image category label
     private let viralToggleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hide Viral"
+        label.text = ""
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textAlignment = .left
