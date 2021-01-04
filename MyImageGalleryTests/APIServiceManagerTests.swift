@@ -17,7 +17,7 @@ class APIServiceManagerTests: XCTestCase {
         let errForInvalid = APIServiceManager.shared.getPictures(forCategory: .top, showViralImages: false, pageNumber: invalidPageNumber) { (_, _) in
         }
         
-        XCTAssertNotNil(errForInvalid)    //err should not be nil as the pageNumber passed is invalid
+        XCTAssertNo tNil(errForInvalid)    //err should not be nil as the pageNumber passed is invalid
         
         let validPageNumber = 1
         
